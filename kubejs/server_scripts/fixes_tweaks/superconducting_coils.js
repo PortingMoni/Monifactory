@@ -6,7 +6,7 @@ ServerEvents.recipes(event => {
     // Get all GTCEu Assembler recipes with an ID matching the regex
     event.findRecipes({ id: /gtceu:assembler\/superconducting_coil/, type: "gtceu:assembler" }).forEach(supercon_coil_recipe => {
         // Get the JSON array object representing all of the fluid ingredients
-        let fluidIngredients = supercon_coil_recipe.json.getAsJsonObject("inputs").getAsJsonArray("fluid")
+        let fluidIngredients = supercon_coil_recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:fluid")
         for (let i = 0; i < fluidIngredients.size(); i++) {
             // Fluid ingredient to alter if it includes "forge:trinium" as a tag
             let curFluidIngredient = fluidIngredients.get(i).getAsJsonObject("content")
