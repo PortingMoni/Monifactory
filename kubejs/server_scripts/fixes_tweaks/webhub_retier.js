@@ -20,7 +20,7 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.ZPM])
         .duration(1200)
         .addMaterialInfo(true)
-        .itemOutputs("gtmutils:web_hub_machine")
+        .itemOutputs("gtmutils:web_hub")
         ["scannerResearch(java.util.function.UnaryOperator)"](b => b
             .researchStack("gtceu:active_transformer")
             .duration(2400)
@@ -41,7 +41,7 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.ZPM])
         .duration(1200)
         .addMaterialInfo(true)
-        .itemOutputs("gtmutils:web_hub_machine")
+        .itemOutputs("gtmutils:web_hub")
         ["scannerResearch(java.util.function.UnaryOperator)"](b => b
             .researchStack("gtceu:active_transformer")
             .duration(2400)
