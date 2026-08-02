@@ -274,7 +274,7 @@ ServerEvents.recipes(event => {
         }))
         itemEntries = JSON.parse(JSON.stringify(itemEntries))
         event.forEachRecipe({ id: recipeMatcherID }, recipe => {
-            recipe.json.getAsJsonObject("inputs").getAsJsonArray("item").addAll(itemEntries)
+            recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:item").addAll(itemEntries)
         })
     }
 

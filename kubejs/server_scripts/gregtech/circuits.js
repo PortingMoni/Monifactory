@@ -7,7 +7,7 @@ function replaceCircassItem(event, idRegex, tagOrItem, toReplace, replaceWith) {
     // Get all GTCEu Circuit Assembler recipes with an ID matching the regex
     event.forEachRecipe({ id: idRegex, type: "gtceu:circuit_assembler" }, circuit_recipe => {
         // Get the JSON array object representing all of the item ingredients
-        let itemIngredients = circuit_recipe.json.getAsJsonObject("inputs").getAsJsonArray("item")
+        let itemIngredients = circuit_recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:item")
         for (let i = 0; i < itemIngredients.size(); i++) {
             // Item ingredient to alter
             let curItemIngredient = itemIngredients.get(i).getAsJsonObject("content").getAsJsonObject("ingredient")
@@ -25,7 +25,7 @@ function replaceGTRecipeAmount(event, recipeType, idRegex, tagOrItem, toAlter, m
     // Get all GTCEu Circuit Assembler recipes with an ID matching the regex
     event.forEachRecipe({ id: idRegex, type: recipeType }, circuit_recipe => {
         // Get the JSON array object representing all of the item ingredients
-        let itemIngredients = circuit_recipe.json.getAsJsonObject("inputs").getAsJsonArray("item")
+        let itemIngredients = circuit_recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:item")
         for (let i = 0; i < itemIngredients.size(); i++) {
             // Item ingredient to alter
             let curItemContent = itemIngredients.get(i).getAsJsonObject("content")

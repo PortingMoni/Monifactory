@@ -34,26 +34,29 @@ export type GTJSONRecipeItem = {
     children: {tag: MCIdentifier}[]
 }
 
+export type GTJSONRecipeFluidValue = {
+    tag: MCIdentifier
+} | {
+    fluid: MCIdentifier
+}
+
 export type GTJSONRecipeFluid = {
     amount: number
-    // Yes, this array does always have exactly 1 element. IDK why.
-    value: [{
-        tag: MCIdentifier
-    } | {
-        fluid: MCIdentifier
-    }]
+    /** FluidIngredient serializes a lone value as a bare object and only uses an
+     *  array when it holds several, so this is a single object most of the time. */
+    value: GTJSONRecipeFluidValue | GTJSONRecipeFluidValue[]
 }
 
 export type GTJSONRecipeIO = {
-    item?: GTJSONRecipeChancedContents<GTJSONRecipeItem>
-    fluid?: GTJSONRecipeChancedContents<GTJSONRecipeFluid>
+    "gtceu:item"?: GTJSONRecipeChancedContents<GTJSONRecipeItem>
+    "gtceu:fluid"?: GTJSONRecipeChancedContents<GTJSONRecipeFluid>
 }
 
 export type GTJSONRecipeCondition = {
-    type: "cleanroom"
+    type: "gtceu:cleanroom"
     cleanroom: "cleanroom" | "sterile_cleanroom"
 } | {
-    type: "research"
+    type: "gtceu:research"
     research: [{
         researchId: string
         dataItem: {
@@ -65,7 +68,8 @@ export type GTJSONRecipeCondition = {
 }
 
 export type GTJSONRecipeChanceLogics = {
-    item?: string
+    /** A namespaced chance logic id, e.g. "gtceu:xor" */
+    "gtceu:item"?: MCIdentifier
     // TODO?
 }
 
@@ -86,11 +90,11 @@ export type GTJSONRecipe = {
     outputs?: GTJSONRecipeIO
 
     tickInputs?: {
-        eu?: GTJSONRecipeChancedContents<number>
-        cwu?: GTJSONRecipeChancedContents<number>
+        "gtceu:eu"?: GTJSONRecipeChancedContents<number>
+        "gtceu:cwu"?: GTJSONRecipeChancedContents<number>
     }
     tickOutputs?: {
-        eu?: GTJSONRecipeChancedContents<number>
+        "gtceu:eu"?: GTJSONRecipeChancedContents<number>
     }
     // All fields above are 100% complete
 
