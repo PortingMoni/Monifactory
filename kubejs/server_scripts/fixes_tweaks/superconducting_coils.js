@@ -15,13 +15,10 @@ ServerEvents.recipes(event => {
             let fluidAmount = curFluidIngredient.getAsJsonPrimitive("amount").asInt
 
             // Confirm that we are indeed altering a fluid ingredient that contains the "forge:trinium" tag
-            let fluidIngredient = curFluidIngredient.getAsJsonArray("value")
-            for (let j = 0; j < fluidIngredient.size(); j++) {
-                if (fluidIngredient.get(j).getAsJsonPrimitive("tag").asString == "forge:trinium") {
-                    // Change fluid ingredient to 1/2 the amount if it does match
-                    curFluidIngredient.remove("amount")
-                    curFluidIngredient["addProperty(java.lang.String,java.lang.Number)"]("amount", fluidAmount / 2)
-                }
+            let fluidIngredient = curFluidIngredient.getAsJsonObject("value")
+            if (fluidIngredient.has("tag") && fluidIngredient.getAsJsonPrimitive("tag").asString == "forge:trinium") {
+                curFluidIngredient.remove("amount")
+                curFluidIngredient["addProperty(java.lang.String,java.lang.Number)"]("amount", fluidAmount / 2)
             }
         }
     })
