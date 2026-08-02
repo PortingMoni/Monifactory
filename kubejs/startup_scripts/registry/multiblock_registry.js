@@ -4,126 +4,14 @@
  * It is also where the shapes for multis are defined.
  */
 const List = Java.loadClass("java.util.List")
+const Vector3f = Java.loadClass("org.joml.Vector3f")
 const Tags = Java.loadClass("dev.latvian.mods.kubejs.util.Tags")
 const FusionReactorMachine = Java.loadClass("com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine")
 const CoilWorkableElectricMultiblockMachine = Java.loadClass("com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine")
-const RecipeLogic = Java.loadClass("com.gregtechceu.gtceu.api.machine.trait.RecipeLogic")
-const MoniGuiTextures = Java.loadClass("net.neganote.monilabs.client.gui.MoniGuiTextures");
+const RecipeLogic = Java.loadClass("com.gregtechceu.gtceu.api.machine.trait.recipe.RecipeLogic")
 Java.loadClass("net.neganote.monilabs.client.render.MoniDynamicRenderHelper");
 Java.loadClass("net.neganote.monilabs.client.render.HelicalFusionRenderer");
 
-GTCEuStartupEvents.registry("gtceu:recipe_type", event => {
-
-    // Normal mode-exclusive Multis
-    if (doHNN) {
-        // Simulation Supercomputer
-        event.create("simulation_supercomputer")
-            .category("multiblock")
-            .setEUIO("in")
-            .setMaxIOSize(2, 2, 0, 0)
-            .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-            .setProgressBar(MoniGuiTextures.PROGRESS_BAR_SIMULATION, FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COMPUTATION)
-            .setSound(GTSoundEntries.ASSEMBLER)
-
-        // Loot Superfabricator
-        event.create("loot_superfabricator")
-            .category("multiblock")
-            .setEUIO("in")
-            .setMaxIOSize(2, 1, 0, 0)
-            .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-            .setProgressBar(MoniGuiTextures.PROGRESS_BAR_SIMULATION, FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.COMPUTATION)
-    }
-
-
-    // Hard mode-exclusive Multis
-
-    // Actualization Chamber
-    event.create("actualization_chamber")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(2, 20, 0, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.COOLING)
-
-    // Naquadah Reactor I Recipe type
-    event.create("naquadah_reactor")
-        .category("multiblock")
-        .setEUIO("out")
-        .setMaxIOSize(2, 2, 0, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ARC);
-
-    // Large Naquadah Reactor Recipe Type
-    event.create("large_naquadah_reactor")
-        .category("multiblock")
-        .setEUIO("out")
-        .setMaxIOSize(0, 0, 1, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ARC)
-
-    // Naquadah Fuel Refinery
-    event.create("naquadah_refinery")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(6, 0, 5, 1)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.COOLING)
-
-    // Greenhouse
-    event.create("greenhouse")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(3, 6, 1, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.TURBINE)
-
-    // Quintessence Infuser
-    event.create("quintessence_infuser")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(2, 2, 1, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(MoniGuiTextures.PROGRESS_BAR_XP, FillDirection.DOWN_TO_UP)
-        .setSound(GTSoundEntries.CENTRIFUGE)
-
-    // Rock Cycle Simulator
-    event.create("rock_cycle_simulator")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(1, 1, 0, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.MINER)
-
-    // Discharger
-    event.create("discharger")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(9, 1, 1, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ELECTROLYZER)
-
-    event.create("antimatter_manipulation")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(1, 1, 3, 1)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.CHEMICAL)
-
-    // Recipe types for coremod multis
-    // MoniRecipeTypes.createPrismaCRecipeType("chromatic_processing")
-    // MoniRecipeTypes.createPrismaCRecipeType("chromatic_transcendence")
-
-})
 
 GTCEuStartupEvents.registry("gtceu:machine", event => {
 
@@ -138,7 +26,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
             .recipeTypes("simulation_supercomputer")
             .recipeModifiers([GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
             .appearanceBlock(() => new Block.getBlock("kubejs:dark_steel_casing"))
-            .pattern(definition => FactoryBlockPattern.start()
+            .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
                 .aisle("CCC", "CEC", "CCC")
                 .aisle("CCC", "EME", "CCC")
                 .aisle("C@C", "CEC", "CCC")
@@ -159,7 +47,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
             .recipeTypes("loot_superfabricator")
             .recipeModifiers([GTRecipeModifiers.OC_NON_PERFECT_SUBTICK])
             .appearanceBlock(() => new Block.getBlock("kubejs:dark_steel_casing"))
-            .pattern(definition => FactoryBlockPattern.start()
+            .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
                 .aisle("CCC", "CEC", "CCC")
                 .aisle("CCC", "EME", "CCC")
                 .aisle("C@C", "CEC", "CCC")
@@ -181,7 +69,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
             .recipeTypes("simulation_supercomputer")
             .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
             .appearanceBlock(() => new Block.getBlock("kubejs:dark_steel_casing"))
-            .pattern(definition => FactoryBlockPattern.start()
+            .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
                 .aisle("CCCCC", "VEEEV", "VEEEV", "VEEEV", "CCCCC")
                 .aisle("CCCCC", "QOOOQ", "VOOOV", "QOOOQ", "CCCCC")
                 .aisle("CCCCC", "QOOOQ", "VO OV", "QOOOQ", "CCCCC")
@@ -208,7 +96,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
             .recipeTypes("loot_superfabricator")
             .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
             .appearanceBlock(() => new Block.getBlock("kubejs:dark_steel_casing"))
-            .pattern(definition => FactoryBlockPattern.start()
+            .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
                 .aisle("CCCCC", "VEEEV", "VEEEV", "VEEEV", "CCCCC")
                 .aisle("CCCCC", "QOOOQ", "VOOOV", "QOOOQ", "CCCCC")
                 .aisle("CCCCC", "QOOOQ", "VO OV", "QOOOQ", "CCCCC")
@@ -238,7 +126,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(GTRecipeTypes.FUSION_RECIPES)
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, MachineModifiers.FUSION_REACTOR, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GCYMBlocks.CASING_ATOMIC)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#######################", "#######################", "#######################", "###F##F#N#####N#F##F###", "###FNNFNN#####NNFNNF###", "###F##F#N#####N#F##F###", "#######################", "#######################", "#######################")
             .aisle("#######################", "###F##F###NNN###F##F###", "###F##F##N###N##F##F###", "###ECCBC#######CBCCE###", "###BBBBC#######CBBBB###", "###ECCBC#######CBCCE###", "###F##F##N###N##F##F###", "###F##F###NNN###F##F###", "#######################")
             .aisle("#######################", "###F##F##N###N##F##F###", "##DDDDDDD#####DDDDDDD##", "#CDTTTTTDCCCCCDTTTTTDC#", "#CDTTTTTDCGGGCDTTTTTDC#", "#CDTTTTTDCCCCCDTTTTTDC#", "##DDDDDDD#####DDDDDDD##", "###F##F##N###N##F##F###", "#######################")
@@ -280,7 +168,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("greenhouse")
         .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
         .recipeModifiers([GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE])
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("SSSSS", "UDDDU", "UDDDU", "UUGUU", "#UUU#")
             .aisle("SFFFS", "D###D", "D###D", "GO#OG", "#GEG#")
             .aisle("SFFFS", "D###D", "D###D", "GO#OG", "#GEG#")
@@ -322,7 +210,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("rock_cycle_simulator")
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("CCCCCCC", "CCCCCCC", "CCCCCCC", "CCCCCCC")
             .aisle("CCCCCCC", "TMMOIIT", "TMCCCIT", "CCCCCCC")
             .aisle("CCC@CCC", "CTTTTTC", "CTCCCTC", "CCCCCCC")
@@ -347,7 +235,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(GTRecipeTypes.GAS_COLLECTOR_RECIPES)
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GCYMBlocks.CASING_CORROSION_PROOF)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("CCCCC", "C   C", "CCCCC", "C   C", "CCCCC", "C   C", "CCCCC")
             .aisle("CCCCC", " GIG ", "CGGGC", " GIG ", "CCCCC", " GIG ", "CIIIC")
             .aisle("CCCCC", " IOI ", "CGOGC", " IOI ", "CCOCC", " IOI ", "CIOIC")
@@ -373,7 +261,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("atomic_reconstruction")
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GCYMBlocks.CASING_LASER_SAFE_ENGRAVING)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#CCC#######", "#CGC#######", "#CGC#######", "#CGC#######", "#CCC#######",)
             .aisle("CCCCC#F###F", "C   CCCCCCC", "C   CGGGGGC", "C   CCCCCCC", "CCCCC######",)
             .aisle("CCCCC######", "G CCCCCCCCC", "G F      PC", "G CCCGGGGGC", "CCCCC######",)
@@ -400,7 +288,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(GTRecipeTypes.IMPLOSION_RECIPES)
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#########", "####E####", "###EEE###", "####E####", "#########", "#########")
             .aisle("#########", "####E####", "###E2E###", "####E####", "#########", "#########")
             .aisle("###SES###", "###SES###", "##SE ES##", "###SES###", "###SES###", "#########")
@@ -436,7 +324,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("quintessence_infuser")
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(() => Block.getBlock("kubejs:dark_soularium_casing"))
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#CCC#", "CCCCC", "HGGGH", "HGGGH", "HGGGH", "CCCCC", "#CCC#")
             .aisle("CCCCC", "COOOC", "G#O#G", "G#O#G", "G#O#G", "C#O#C", "CCCCC")
             .aisle("CCCCC", "COPOC", "GOPOG", "GOPOG", "GOPOG", "COPOC", "CCCCC")
@@ -464,7 +352,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeModifiers((machine, recipe) => global.dischargerParallel(machine, recipe))
         .appearanceBlock(() => Block.getBlock("monilabs:cryolobus_casing"))
         .generator(true)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#CCCCC#", "#######", "#######", "#######", "#######", "#######", "#CCCCC#")
             .aisle("CCCCCCC", "#NGGGN#", "#NGGGN#", "#NNNNN#", "#NGGGN#", "#NGGGN#", "CCCCCCC")
             .aisle("CCCCCCC", "#G   G#", "#G   G#", "#NE EN#", "#G   G#", "#G   G#", "CCCCCCC")
@@ -508,7 +396,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .appearanceBlock(GCYMBlocks.CASING_REACTION_SAFE)
         .generator(true)
         .regressWhenWaiting(false)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("CCC", "PGP", "PGP", "PGP", "PGP", "CCC")
             .aisle("CCC", "GNG", "GNG", "GNG", "GNG", "CCC")
             .aisle("C@C", "PGP", "PGP", "PGP", "PGP", "CCC")
@@ -530,7 +418,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .regressWhenWaiting(false)
         .appearanceBlock(GCYMBlocks.CASING_ATOMIC)
         .generator(true)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("##CCCCC##", "##CGGGC##", "##CCCCC##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "##CCCCC##")
             .aisle("#CCCCCCC#", "#CC   CC#", "#CCCCCCC#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#CCCCCCC#")
             .aisle("CCCHHHCCC", "CCN   NCC", "CCCSSSCCC", "##DGGGD##", "##DGGGD##", "##DGGGD##", "##DGGGD##", "##DGGGD##", "##DGGGD##", "##DGGGD##", "CCCSSSCCC")
@@ -564,7 +452,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("naquadah_refinery")
         .appearanceBlock(() => Block.getBlock("gtceu:stress_proof_casing"))
         .recipeModifiers([GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK)])
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("##CCCCC##", "##CCCCC##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
             .aisle("#CCCCCCC#", "#CC#P#CC#", "####P####", "####P####", "###SSS###", "###VVV###", "###GGG###", "###VVV###", "###SSS###", "#########", "#########")
             .aisle("CCCCCCCCC", "CCF###FCC", "##F###F##", "##FSSSF##", "##S   S##", "##V   V##", "##G   G##", "##V   V##", "##S   S##", "###SSS###", "#########")
@@ -599,7 +487,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes("assembly_line")
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(() => Block.getBlock("monilabs:dimensional_stabilization_netherite_casing"))
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#########", "###CCC###", "##CCCCC##", "#CCCCCCC#", "#CCCCCCC#", "#CCCCCCC#", "##CCCCC##", "###CCC###", "#########")
             .aisle("##CCCCC##", "#CCCCCCC#", "CCCCCCCCC", "CCCCCCCCC", "CCCCCCCCC", "CCCCCCCCC", "CCCCCCCCC", "#CCCCCCC#", "##CCCCC##")
             .aisle("#########", "#I#####I#", "##LLOLL##", "##GF FG##", "##GF FG##", "##RLLLR##", "##LM#ML##", "#I#####I#", "#########")
@@ -650,7 +538,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
         .recipeModifiers([GTRecipeModifiers.PARALLEL_HATCH, (machine, recipe) => GTRecipeModifiers.ebfOverclock(machine, recipe), GTRecipeModifiers.BATCH_MODE])
         .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("###IIIII###", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########")
             .aisle("#IIIIIIIII#", "###F###F###", "###F###F###", "###F###F###", "###FIIIF###", "###FIEIF###", "###FIIIF###", "###FFFFF###", "###########", "###########", "###########", "###########", "###########", "###########", "###IIHII###", "###########")
             .aisle("#IIIIIIIII#", "###HHHHH###", "###HVVVH###", "##FHHHHHF##", "##IICCCII##", "##IICECII##", "##IICCCII##", "##FFCCCFF##", "##F#CCC#F##", "##F#CCC#F##", "##F#VVV#F##", "##F#CCC#F##", "##F#CCC#F##", "##F#CCC#F##", "##IIIIIII##", "####IHI####")
@@ -690,7 +578,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(["omnic_synthesis"])
         .appearanceBlock(GCYMBlocks.CASING_ATOMIC)
         .recipeModifiers([MoniRecipeModifiers.omnicSynthRecipeModifier(), GTRecipeModifiers.OC_NON_PERFECT])
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#CCCCC#", "#CCCCC#", "#CGGGC#", "#CGGGC#", "#CGGGC#", "#CGGGC#", "#CGGGC#", "#CCCCC#", "#CCCCC#")
             .aisle("CCCCCCC", "CHMMMHC", "CH###HC", "CH###HC", "CH###HC", "CH###HC", "CH###HC", "CHMMMHC", "CCCCCCC")
             .aisle("CCCCCCC", "CMXYXMC", "G#XYX#G", "G#XYX#G", "G#XYX#G", "G#XYX#G", "G#XYX#G", "CMXYXMC", "CCCCCCC")
@@ -723,7 +611,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .recipeTypes(["antimatter_manipulation"])
         .recipeModifiers([GTRecipeModifiers.OC_NON_PERFECT])
         .appearanceBlock(() => Block.getBlock("monilabs:dimensional_stabilization_netherite_casing"))
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#MOM#", "##O##", "#####", "#####", "#####", "#####", "#####", "#####")
             .aisle("MMMMM", "#BOB#", "#BBB#", "##F##", "##F##", "##F##", "##F##", "#BBB#")
             .aisle("OMMMO", "OOSOO", "#BSB#", "#FSF#", "#FSF#", "#FSF#", "#FSF#", "#BCB#")
@@ -752,7 +640,7 @@ GTCEuStartupEvents.registry("gtceu:machine", event => {
         .machine((holder) => new AntimatterGeneratorMachine(holder))
         .appearanceBlock(() => new Block.getBlock("monilabs:dimensional_stabilization_netherite_casing"))
         .recipeTypes(MoniRecipeTypes.ANTIMATTER_COLLIDER_RECIPES)
-        .pattern(definition => FactoryBlockPattern.start()
+        .pattern(definition => MultiblockPatternBuilder.start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
             .aisle("#MMMMMMMMM#", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "##X#####X##", "#MMMMMMMMM#")
             .aisle("MMMMMMMMMMM", "####AAA####", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "###########", "####BBB####", "MMMMMMMMMMM")
             .aisle("MMMMAAAMMMM", "X##ACCCA##X", "X###AAA###X", "X#########X", "X#########X", "X#########X", "X#########X", "X#########X", "X#########X", "X#########X", "X#####CC##X", "X###CC####X", "X###BBB###X", "X##BCCCB##X", "MMMMBBBMMMM")
