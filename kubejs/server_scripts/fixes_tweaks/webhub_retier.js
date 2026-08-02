@@ -1,12 +1,12 @@
 /**
- * Re-tiers the PTERB to late LuV - script 1 of 2.
+ * Re-tiers the WEBHubMachine to late LuV - script 1 of 2.
  * - Replaces UV components with LuV components.
  */
 ServerEvents.recipes(event => {
-    event.remove({ id: "gtceu:assembly_line/pterb" })
+    event.remove({ id: "gtceu:assembly_line/web_hub" })
     event.remove({ id: "gtceu:research_station/1x_gtceu_active_transformer" })
 
-    event.recipes.gtceu.assembly_line("pterb")
+    event.recipes.gtceu.assembly_line("web_hub")
         .itemInputs("gtceu:active_transformer")
         .itemInputs("32x gtceu:europium_plate")
         .itemInputs("8x gtceu:luv_sensor")
@@ -20,14 +20,14 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.ZPM])
         .duration(1200)
         .addMaterialInfo(true)
-        .itemOutputs("gtmutils:pterb_machine")
+        .itemOutputs("gtmutils:web_hub_machine")
         ["scannerResearch(java.util.function.UnaryOperator)"](b => b
             .researchStack("gtceu:active_transformer")
             .duration(2400)
             .EUt(GTValues.VA[GTValues.IV])
         )
     // Same as above but with Living Soldering Alloy
-    event.recipes.gtceu.assembly_line("pterb/living_soldering_alloy")
+    event.recipes.gtceu.assembly_line("web_hub/living_soldering_alloy")
         .itemInputs("gtceu:active_transformer")
         .itemInputs("32x gtceu:europium_plate")
         .itemInputs("8x gtceu:luv_sensor")
@@ -41,7 +41,7 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.ZPM])
         .duration(1200)
         .addMaterialInfo(true)
-        .itemOutputs("gtmutils:pterb_machine")
+        .itemOutputs("gtmutils:web_hub_machine")
         ["scannerResearch(java.util.function.UnaryOperator)"](b => b
             .researchStack("gtceu:active_transformer")
             .duration(2400)
