@@ -4,12 +4,6 @@
  */
 
 /* *** TO BE REMOVED FROM THIS FILE IN MONIFACTORY 0.14 *** */
-// Traveller's Boots
-deprecateItem("travellersbootsreloaded:travellers_boots_tier1", "gtexolegs:lv_exoskeleton_legs", "Traveller's Boots Tier 1")
-deprecateItem("travellersbootsreloaded:travellers_boots_tier2", "gtexolegs:mv_exoskeleton_legs", "Traveller's Boots Tier 2")
-deprecateItem("travellersbootsreloaded:travellers_boots_tier3", "gtexolegs:hv_exoskeleton_legs", "Traveller's Boots Tier 3")
-deprecateItem("travellersbootsreloaded:travellers_boots_tier4", "gtexolegs:ev_exoskeleton_legs", "Traveller's Boots Tier 4")
-deprecateItem("travellersbootsreloaded:travellers_boots_tier5", "gtexolegs:iv_exoskeleton_legs", "Traveller's Boots Tier 5")
 
 // Primal Mana
 deprecateFluid("kubejs:molten_primal_mana", "gtceu:mana", "Primal Mana")
