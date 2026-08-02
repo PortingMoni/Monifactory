@@ -7,7 +7,7 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.large_chemical_reactor("glycerol_from_sugar_hydrogenolysis")
         .notConsumable("gtceu:ultimet_rod")
         .itemInputs("4x minecraft:sugar")
-        .chancedInput("gtceu:soda_ash_dust", 1000, 0)
+        .chancedInput("gtceu:soda_ash_dust", 1000)
         .inputFluids("gtceu:hydrogen 8000", "minecraft:water 1000")
         .outputFluids("gtceu:glycerol 4000")
         .duration(1600)

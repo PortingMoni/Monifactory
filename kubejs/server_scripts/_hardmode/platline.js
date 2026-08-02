@@ -94,7 +94,7 @@ if (doHarderProcessing) {
         event.recipes.gtceu.centrifuge("centrifuge_platinum_sludge_residue_dust")
             .itemInputs("5x gtceu:platinum_sludge_residue_dust")
             .itemOutputs("2x gtceu:silicon_dioxide_dust", "2x gtceu:copper_dust")
-            .chancedOutput("gtceu:gold_dust", 4000, 0)
+            .chancedOutput("gtceu:gold_dust", 4000)
             .duration(938).EUt(GTValues.VA[GTValues.LV])
 
         // Platinum
@@ -126,7 +126,7 @@ if (doHarderProcessing) {
 
         event.recipes.gtceu.sifter("sift_crude_platinum_residue_dust")
             .itemInputs("gtceu:crude_platinum_residue_dust")
-            .chancedOutput("gtceu:platinum_metallic_dust", 9500, 0)
+            .chancedOutput("gtceu:platinum_metallic_dust", 9500)
             .duration(600).EUt(GTValues.VA[GTValues.LV])
 
         // Palladium

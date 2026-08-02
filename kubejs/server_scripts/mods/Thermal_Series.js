@@ -84,14 +84,14 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.centrifuge("kubejs:resin_centrifuging")
         .inputFluids(Fluid.of("thermal:resin", 400))
         .itemOutputs("gtceu:sticky_resin")
-        .chancedOutput("thermal:rosin", 6000, 0)
+        .chancedOutput("thermal:rosin", 6000)
         .outputFluids(Fluid.of("thermal:tree_oil", 150), Fluid.of("minecraft:water", 150))
         .duration(200).EUt(20)
 
     event.recipes.gtceu.distillation_tower("kubejs:sap_distillation")
         .inputFluids(Fluid.of("thermal:sap", 200))
         .outputFluids(Fluid.of("thermal:syrup", 15), Fluid.of("minecraft:water", 175))
-        .chancedOutput("minecraft:sugar", 1000, 0)
+        .chancedOutput("minecraft:sugar", 1000)
         .duration(10 * 20).EUt(2)
 
     event.remove({ id: "thermal:redstone_servo" });

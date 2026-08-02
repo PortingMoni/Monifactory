@@ -172,7 +172,7 @@ if (Platform.isLoaded("railways")) {
             event.recipes.gtceu.cutter(`kubejs:${outputItem.replace(/^.*:/, "")}`)
                 .itemInputs(`${inputTrackItem}`)
                 .itemOutputs(`${outputCount}x ${outputItem}`)
-                .chancedOutput(`${sleeperOutputItem}`, 5000, 0)
+                .chancedOutput(`${sleeperOutputItem}`, 5000)
                 .duration(5)
                 .EUt(GTValues.VHA[GTValues.LV]); // Low Voltage
         };

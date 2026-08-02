@@ -242,14 +242,14 @@ function parseRecipe(recipe) {
                 if(i.chance === 0) {
                     newRecipe.notConsumable(Item.of(i.item, i.amount))
                 } else {
-                    newRecipe.chancedInput(Item.of(i.item, i.amount), 10000 * i.chance / i.maxChance, 0)
+                    newRecipe.chancedInput(Item.of(i.item, i.amount), 10000 * i.chance / i.maxChance)
                 }
             }
         if(newOutputItems) for (let i of newOutputItems) {
             /** @type {Internal.ItemStack} */
             // @ts-expect-error
             let itemStack = i.item ?? `#${i.tag}`
-            newRecipe = newRecipe.chancedOutput(ExtendedOutputItem.of(Item.of(itemStack, i.amount)), 10000 * i.chance / i.maxChance, 0)
+            newRecipe = newRecipe.chancedOutput(ExtendedOutputItem.of(Item.of(itemStack, i.amount)), 10000 * i.chance / i.maxChance)
         }
 
         // Polyfilled spread operator 🙏

@@ -363,12 +363,12 @@ ServerEvents.recipes(event => {
         event.recipes.gtceu.electrolyzer("electrolyzing_rare_earth_with_tributyl_phosphate")
             .itemInputs("gtceu:rare_earth_dust")
             .inputFluids("gtceu:tributyl_phosphate 150")
-            .chancedOutput("gtceu:neodymium_dust", 1500, 0)
-            .chancedOutput("gtceu:samarium_dust", 1500, 0)
-            .chancedOutput("gtceu:yttrium_dust", 1500, 0)
-            .chancedOutput("gtceu:lanthanum_dust", 1500, 0)
-            .chancedOutput("gtceu:lutetium_dust", 600, 0)
-            .chancedOutput("gtceu:europium_dust", 600, 0)
+            .chancedOutput("gtceu:neodymium_dust", 1500)
+            .chancedOutput("gtceu:samarium_dust", 1500)
+            .chancedOutput("gtceu:yttrium_dust", 1500)
+            .chancedOutput("gtceu:lanthanum_dust", 1500)
+            .chancedOutput("gtceu:lutetium_dust", 600)
+            .chancedOutput("gtceu:europium_dust", 600)
             .duration(50).EUt(GTValues.VA[GTValues.UV])
     }
 
@@ -415,7 +415,7 @@ ServerEvents.recipes(event => {
 
         event.recipes.gtceu.chemical_reactor("dinitrodiphenyl_ether")
             .inputFluids("gtceu:nitrochlorobenzene 2000")
-            .chancedInput("gtceu:copper_iodide_dust", 1500, 0)
+            .chancedInput("gtceu:copper_iodide_dust", 1500)
             .itemInputs("6x gtceu:sodium_hydroxide_dust")
             .outputFluids("gtceu:dinitrodiphenyl_ether 1000", "minecraft:water 1000")
             .itemOutputs("4x gtceu:salt_dust")

@@ -266,7 +266,6 @@ ServerEvents.recipes(event => {
         let itemEntries = ingredients.map(ingredient => ({
             chance: 10000,
             maxChance: 10000,
-            tierChanceBoost: 0,
             content: {
                 type: "gtceu:sized",
                 count: ingredient.count,

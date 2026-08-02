@@ -52,7 +52,7 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.distillation_tower("distill_liquid_ender_air")
         .inputFluids("gtceu:liquid_ender_air 200000")
         .outputFluids("gtceu:nitrogen_dioxide 128000", "gtceu:deuterium 50000", "gtceu:helium 15000", "gtceu:tritium 4000", "gtceu:krypton 1000", "gtceu:xenon 1000", "gtceu:radon 1000")
-        .chancedOutput("gtceu:ender_pearl_dust", 1000, 0)
+        .chancedOutput("gtceu:ender_pearl_dust", 1000)
         .EUt(GTValues.VA[GTValues.IV])
         .duration(100 * 20)
 
@@ -800,7 +800,7 @@ ServerEvents.recipes(event => {
     event.remove({ id: "gtceu:centrifuge/oilsands_dust_separation" })
     event.recipes.gtceu.centrifuge("oilsands_to_oil")
         .itemInputs("gtceu:oilsands_dust")
-        .chancedOutput("minecraft:sand", 2500, 0)
+        .chancedOutput("minecraft:sand", 2500)
         .outputFluids("gtceu:oil 1000")
         .duration(200)
         .EUt(GTValues.VA[GTValues.LV])
@@ -808,7 +808,7 @@ ServerEvents.recipes(event => {
 
     event.recipes.gtceu.centrifuge("oilsands_to_light_oil")
         .itemInputs("gtceu:oilsands_dust")
-        .chancedOutput("minecraft:sand", 2500, 0)
+        .chancedOutput("minecraft:sand", 2500)
         .outputFluids("gtceu:oil_light 500")
         .duration(200)
         .EUt(GTValues.VA[GTValues.LV])
@@ -816,7 +816,7 @@ ServerEvents.recipes(event => {
 
     event.recipes.gtceu.centrifuge("oilsands_to_heavy_oil")
         .itemInputs("gtceu:oilsands_dust")
-        .chancedOutput("minecraft:sand", 2500, 0)
+        .chancedOutput("minecraft:sand", 2500)
         .outputFluids("gtceu:oil_heavy 2000")
         .duration(200)
         .EUt(GTValues.VA[GTValues.LV])
@@ -824,7 +824,7 @@ ServerEvents.recipes(event => {
 
     event.recipes.gtceu.centrifuge("oilsands_to_raw_oil")
         .itemInputs("gtceu:oilsands_dust")
-        .chancedOutput("minecraft:sand", 2500, 0)
+        .chancedOutput("minecraft:sand", 2500)
         .outputFluids("gtceu:oil_medium 1000")
         .duration(200)
         .EUt(GTValues.VA[GTValues.LV])
@@ -880,7 +880,7 @@ ServerEvents.recipes(event => {
 
     // Alternate Recipe for Octane
     event.recipes.gtceu.chemical_reactor("synthetic_octane")
-        .chancedFluidInput("gtceu:sulfuric_acid 500", 5000, 0)
+        .chancedFluidInput("gtceu:sulfuric_acid 500", 5000)
         .inputFluids("gtceu:butene 1000", "gtceu:butane 1000")
         .outputFluids("gtceu:octane 1000")
         .duration(240)
@@ -899,7 +899,7 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.macerator("macerate_gilded_blackstone")
         .itemInputs("minecraft:gilded_blackstone")
         .itemOutputs("gtceu:blackstone_dust")
-        .chancedOutput("gtceu:gold_dust", 2500, 0)
+        .chancedOutput("gtceu:gold_dust", 2500)
         .duration(66)
         .EUt(2)
 
