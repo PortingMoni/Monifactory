@@ -5,7 +5,6 @@
  */
 const List = Java.loadClass("java.util.List")
 const Tags = Java.loadClass("dev.latvian.mods.kubejs.util.Tags")
-const LocalizationUtils = Java.loadClass("com.lowdragmc.lowdraglib.utils.LocalizationUtils")
 const FusionReactorMachine = Java.loadClass("com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine")
 const CoilWorkableElectricMultiblockMachine = Java.loadClass("com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine")
 const RecipeLogic = Java.loadClass("com.gregtechceu.gtceu.api.machine.trait.RecipeLogic")
@@ -124,22 +123,11 @@ GTCEuStartupEvents.registry("gtceu:recipe_type", event => {
     // MoniRecipeTypes.createPrismaCRecipeType("chromatic_processing")
     // MoniRecipeTypes.createPrismaCRecipeType("chromatic_transcendence")
 
-    event.create("omnic_synthesis")
-        .category("multiblock")
-        .setEUIO("in")
-        .setMaxIOSize(1, 1, 0, 0)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.CHEMICAL)
 })
 
 GTCEuStartupEvents.registry("gtceu:machine", event => {
 
     // EMI displays for various multis
-    GTRecipeTypes.get("omnic_synthesis")
-        .addDataInfo((data) => LocalizationUtils.format("gtceu.multiblock.omnic_synthesizer.emi_info.0"))
-        .addDataInfo((data) => LocalizationUtils.format("gtceu.multiblock.omnic_synthesizer.emi_info.1"))
-        .addDataInfo((data) => LocalizationUtils.format("gtceu.multiblock.omnic_synthesizer.emi_info.2"))
-        .addDataInfo((data) => LocalizationUtils.format("gtceu.multiblock.omnic_synthesizer.emi_info.3"))
 
     // Normal mode-exclusive multis
     if (doHNN) {
