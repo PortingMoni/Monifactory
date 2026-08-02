@@ -1,20 +1,9 @@
 /**
  * Singleblock registry.
- * This is the place where the Atomic Reconstructor machine/recipe type is defined
+ * This is the place where the Atomic Reconstructor machine is defined
  * and custom Parallel Control hatches.
  */
 const $ParallelHatchPartMachine = Java.loadClass("com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine")
-
-// GT Atomic Reconstructor recipe type
-GTCEuStartupEvents.registry("gtceu:recipe_type", event => {
-    event.create("atomic_reconstruction")
-        .category("reconstruction")
-        .setEUIO("in")
-        .setMaxIOSize(1, 1, 0, 0)
-        .setSlotOverlay(false, false, GuiTextures.ARROW_INPUT_OVERLAY)
-        .setProgressBar(MoniGuiTextures.PROGRESS_BAR_RECONSTRUCTION, FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ELECTROLYZER)
-})
 
 // GT Atomic Reconstructor machine
 GTCEuStartupEvents.registry("gtceu:machine", event => {
