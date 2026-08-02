@@ -6,7 +6,8 @@ let ActiveTransformerMachine = Java.loadClass("com.gregtechceu.gtceu.common.mach
 let GTMemoizer = Java.loadClass("com.gregtechceu.gtceu.utils.memoization.GTMemoizer")
 
 // Function<MultiblockMachineDefinition, BlockPattern>
-let active_transformer_pattern = (definition) => FactoryBlockPattern.start()
+let active_transformer_pattern = (definition) => MultiblockPatternBuilder
+                    .start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
     .aisle("XXX", "XXX", "XXX")
     .aisle("XXX", "XCX", "XXX")
     .aisle("XXX", "XSX", "XXX")
@@ -19,5 +20,5 @@ let active_transformer_pattern = (definition) => FactoryBlockPattern.start()
 
 // Set the pattern for Active Transformer
 StartupEvents.postInit(event => {
-    GTMultiMachines.ACTIVE_TRANSFORMER.setPatternFactory(GTMemoizer["memoize(java.util.function.Supplier)"](() => active_transformer_pattern.apply(GTMultiMachines.ACTIVE_TRANSFORMER)))
+    GTMultiMachines.ACTIVE_TRANSFORMER.setPattern("main", active_transformer_pattern)
 })

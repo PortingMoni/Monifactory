@@ -27,5 +27,5 @@ StartupEvents.postInit(event => {
             .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
             .where('F', Predicates.frames(GTMaterials.Neutronium))
             .build();
-    UtilMachines.WEB_HUB.setPatternFactory(GTMemoizer["memoize(java.util.function.Supplier)"](() => pterb_pattern.apply(UtilMachines.WEB_HUB)));
+    UtilMachines.WEB_HUB.setPattern("main", pterb_pattern);
 })
