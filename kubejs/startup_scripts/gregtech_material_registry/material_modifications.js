@@ -139,7 +139,8 @@ GTCEuStartupEvents.materialModification(event => {
     GTMaterials.Sugar.setFormula("C12H22O11", true)
 
     // We keep Ingots in the material definition so we can replace it in the Ore Processing Diagram with vanilla Netherite Scrap, then remove it here.
-    TagPrefix.ingot.setIgnored(GTMaterials.get("netherite_scrap"), Ingredient.of("minecraft:netherite_scrap"))
+    TagPrefix.ingot["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.get("netherite_scrap"), Ingredient.of("minecraft:netherite_scrap"))
 
     GTMaterials.Neutronium.getProperty(PropertyKey.FLUID_PIPE).setThroughput(400)
     GTMaterials.Neutronium.getProperty(PropertyKey.FLUID_PIPE).setMaxFluidTemperature(10000)
@@ -148,12 +149,17 @@ GTCEuStartupEvents.materialModification(event => {
     GTMaterials.Americium.getProperty(PropertyKey.ITEM_PIPE).setTransferRate(20)
 
     // SetIgnoreds for AE2 materials
-    TagPrefix.gem.setIgnored(GTMaterials.CertusQuartz, $AEItems.CERTUS_QUARTZ_CRYSTAL)
-    TagPrefix.gem.setIgnored(GTMaterials.get("charged_certus_quartz"), $AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED)
-    TagPrefix.gem.setIgnored(GTMaterials.get("fluix"), $AEItems.FLUIX_CRYSTAL)
+    TagPrefix.gem["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.CertusQuartz, $AEItems.CERTUS_QUARTZ_CRYSTAL)
+    TagPrefix.gem["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.get("charged_certus_quartz"), $AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED)
+    TagPrefix.gem["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.get("fluix"), $AEItems.FLUIX_CRYSTAL)
 
-    TagPrefix.dust.setIgnored(GTMaterials.CertusQuartz, $AEItems.CERTUS_QUARTZ_DUST)
-    TagPrefix.dust.setIgnored(GTMaterials.get("fluix"), $AEItems.FLUIX_DUST)
+    TagPrefix.dust["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.CertusQuartz, $AEItems.CERTUS_QUARTZ_DUST)
+    TagPrefix.dust["setIgnored(com.gregtechceu.gtceu.api.data.chemical.material.Material,net.minecraft.world.level.ItemLike[])"]
+		(GTMaterials.get("fluix"), $AEItems.FLUIX_DUST)
 
     TagPrefix.block.setIgnoredBlock(GTMaterials.CertusQuartz, $AEBlocks.QUARTZ_BLOCK.block())
     TagPrefix.block.setIgnoredBlock(GTMaterials.get("fluix"), $AEBlocks.FLUIX_BLOCK.block())
