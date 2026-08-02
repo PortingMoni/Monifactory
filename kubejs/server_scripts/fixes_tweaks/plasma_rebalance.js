@@ -13,7 +13,7 @@ ServerEvents.recipes(event => {
 
     // Change plasma fusion recipes to input/output multiples of 144mB for metals instead of 16mB
     event.findRecipes({ id: /gtceu:fusion_reactor\/\w+_and_\w+_to_\w+_plasma/}).forEach(recipe => {
-        let fluidIngredients = recipe.json.getAsJsonObject("inputs").getAsJsonArray("fluid")
+        let fluidIngredients = recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:fluid")
         fluidIngredients.forEach(fluidIngredient => {
             let content = fluidIngredient.getAsJsonObject("content")
             let amount = content.getAsJsonPrimitive("amount").asInt
@@ -23,7 +23,7 @@ ServerEvents.recipes(event => {
             }
         })
 
-        let fluidOutputs = recipe.json.getAsJsonObject("outputs").getAsJsonArray("fluid")
+        let fluidOutputs = recipe.json.getAsJsonObject("outputs").getAsJsonArray("gtceu:fluid")
         fluidOutputs.forEach(fluidOutput => {
             let content = fluidOutput.getAsJsonObject("content")
             let amount = content.getAsJsonPrimitive("amount").asInt

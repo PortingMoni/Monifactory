@@ -32,12 +32,12 @@ ServerEvents.recipes(event => {
 
     event.recipes.gtceu.centrifuge("separate_light_rare_earths")
         .inputFluids("gtceu:light_rare_earths 250")
-        .chancedOutput("gtceu:small_neodymium_dust", 6500, 0)
-        .chancedOutput("gtceu:small_samarium_dust", 5000, 0)
-        .chancedOutput("gtceu:small_yttrium_dust", 5000, 0)
-        .chancedOutput("gtceu:small_lanthanum_dust", 4000, 0)
-        .chancedOutput("gtceu:small_cerium_dust", 7500, 0)
-        .chancedOutput("gtceu:small_cadmium_dust", 5000, 0)
+        .chancedOutput("gtceu:small_neodymium_dust", 6500)
+        .chancedOutput("gtceu:small_samarium_dust", 5000)
+        .chancedOutput("gtceu:small_yttrium_dust", 5000)
+        .chancedOutput("gtceu:small_lanthanum_dust", 4000)
+        .chancedOutput("gtceu:small_cerium_dust", 7500)
+        .chancedOutput("gtceu:small_cadmium_dust", 5000)
         .duration(40)
         .EUt(GTValues.VA[GTValues.EV])
 

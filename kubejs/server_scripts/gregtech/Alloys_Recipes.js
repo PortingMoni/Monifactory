@@ -266,7 +266,6 @@ ServerEvents.recipes(event => {
         let itemEntries = ingredients.map(ingredient => ({
             chance: 10000,
             maxChance: 10000,
-            tierChanceBoost: 0,
             content: {
                 type: "gtceu:sized",
                 count: ingredient.count,
@@ -275,7 +274,7 @@ ServerEvents.recipes(event => {
         }))
         itemEntries = JSON.parse(JSON.stringify(itemEntries))
         event.forEachRecipe({ id: recipeMatcherID }, recipe => {
-            recipe.json.getAsJsonObject("inputs").getAsJsonArray("item").addAll(itemEntries)
+            recipe.json.getAsJsonObject("inputs").getAsJsonArray("gtceu:item").addAll(itemEntries)
         })
     }
 

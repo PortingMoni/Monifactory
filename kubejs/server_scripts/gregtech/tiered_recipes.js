@@ -10,8 +10,50 @@
 
 /** @typedef {import("../../dx/typings/GTJSONRecipe.d.mts").GTJSONRecipe} GTJSONRecipe */
 /** @typedef {import("../../dx/typings/GTJSONRecipe.d.mts").MCIdentifier} MCIdentifier */
+/** @typedef {import("../../dx/typings/GTJSONRecipe.d.mts").GTJSONRecipeFluid} GTJSONRecipeFluid */
+/** @typedef {import("../../dx/typings/GTJSONRecipe.d.mts").GTJSONRecipeFluidValue} GTJSONRecipeFluidValue */
 
 const ExtendedOutputItem = Java.loadClass("com.gregtechceu.gtceu.integration.kjs.recipe.components.ExtendedOutputItem")
+
+// Capability ids as they appear in serialized recipe JSON. GTCEu namespaces these
+// keys, so what used to be `inputs.fluid` is now `inputs["gtceu:fluid"]`.
+const CAP_ITEM = "gtceu:item"
+const CAP_FLUID = "gtceu:fluid"
+const CAP_EU = "gtceu:eu"
+
+/**
+ * Reads one capability out of a serialized inputs/outputs/chance logic map.
+ * @template {object} O
+ * @template {keyof O} K
+ * @param {O | undefined} io
+ * @param {K} cap namespaced capability id
+ * @returns {O[K] | undefined}
+ */
+function capability(io, cap) {
+    return io ? io[cap] : undefined
+}
+
+/**
+ * A FluidIngredient serializes `value` as a bare object when it holds a single
+ * fluid or tag and as an array when it holds several, so normalize to a list.
+ * @param {GTJSONRecipeFluid} content
+ * @returns {GTJSONRecipeFluidValue[]}
+ */
+function fluidValues(content) {
+    let value = content.value
+    if (value === undefined)
+        return []
+    return Array.isArray(value) ? value : [value]
+}
+
+/**
+ * Chance logic ids are namespaced in recipe JSON ("gtceu:xor"), while the
+ * ChanceLogic binding exposes them as plain uppercase names.
+ * @param {string} id
+ */
+function chanceLogicName(id) {
+    return (id.includes(":") ? id.split(":", 2)[1] : id).toUpperCase()
+}
 
 /**
  * @type {[id: MCIdentifier, ratio: number][]}
@@ -42,11 +84,13 @@ const solder_rules = [
     // UV+ recipes exclusively use Living Solder
     [(javaRecipe) => {
         let recipe = JSON.parse(javaRecipe.json.toString())
-        let eut = recipe.tickInputs?.eu?.length
-            ? recipe.tickInputs.eu[0].content
+        let euIn = capability(recipe.tickInputs, CAP_EU)
+        let eut = euIn?.length
+            ? euIn[0].content
             : null
-        let hasSolder = recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-            i.content.value.some(v => "tag" in v
+        let inputFluids = capability(recipe.inputs, CAP_FLUID)
+        let hasSolder = inputFluids && inputFluids.some(i =>
+            fluidValues(i.content).some(v => "tag" in v
                 ? v.tag === "forge:soldering_alloy"
                 : v.fluid === "gtceu:soldering_alloy"
             )
@@ -57,11 +101,13 @@ const solder_rules = [
     // ZPM recipes can use Lead-Free Soldering alloy or Living Solder
     [(javaRecipe) => {
         let recipe = JSON.parse(javaRecipe.json.toString())
-        let eut = recipe.tickInputs?.eu?.length
-            ? recipe.tickInputs.eu[0].content
+        let euIn = capability(recipe.tickInputs, CAP_EU)
+        let eut = euIn?.length
+            ? euIn[0].content
             : null
-        let hasSolder = recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-            i.content.value.some(v => "tag" in v
+        let inputFluids = capability(recipe.inputs, CAP_FLUID)
+        let hasSolder = inputFluids && inputFluids.some(i =>
+            fluidValues(i.content).some(v => "tag" in v
                 ? v.tag === "forge:soldering_alloy"
                 : v.fluid === "gtceu:soldering_alloy"
             )
@@ -72,11 +118,13 @@ const solder_rules = [
     // IV+ recipes use Advanced Soldering Alloy
     [(javaRecipe) => {
         let recipe = JSON.parse(javaRecipe.json.toString())
-        let eut = recipe.tickInputs?.eu?.length
-            ? recipe.tickInputs.eu[0].content
+        let euIn = capability(recipe.tickInputs, CAP_EU)
+        let eut = euIn?.length
+            ? euIn[0].content
             : null
-        let hasSolder = recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-            i.content.value.some(v => "tag" in v
+        let inputFluids = capability(recipe.inputs, CAP_FLUID)
+        let hasSolder = inputFluids && inputFluids.some(i =>
+            fluidValues(i.content).some(v => "tag" in v
                 ? v.tag === "forge:soldering_alloy"
                 : v.fluid === "gtceu:soldering_alloy"
             )
@@ -88,11 +136,13 @@ const solder_rules = [
     // Would be [1, 3] if not for the fact that that creates an infinite loop
     [(javaRecipe) => {
         let recipe = JSON.parse(javaRecipe.json.toString())
-        let eut = recipe.tickInputs?.eu?.length
-            ? recipe.tickInputs.eu[0].content
+        let euIn = capability(recipe.tickInputs, CAP_EU)
+        let eut = euIn?.length
+            ? euIn[0].content
             : null
-        let hasSolder = recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-            i.content.value.some(v => "tag" in v
+        let inputFluids = capability(recipe.inputs, CAP_FLUID)
+        let hasSolder = inputFluids && inputFluids.some(i =>
+            fluidValues(i.content).some(v => "tag" in v
                 ? v.tag === "forge:soldering_alloy"
                 : v.fluid === "gtceu:soldering_alloy"
             )
@@ -103,11 +153,13 @@ const solder_rules = [
     // Remove HV+ recipes that use Liquid Tin
     [(javaRecipe) => {
         let recipe = JSON.parse(javaRecipe.json.toString())
-        let eut = recipe.tickInputs?.eu?.length
-            ? recipe.tickInputs.eu[0].content
+        let euIn = capability(recipe.tickInputs, CAP_EU)
+        let eut = euIn?.length
+            ? euIn[0].content
             : null
-        let hasSolder = recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-            i.content.value.some(v => "tag" in v
+        let inputFluids = capability(recipe.inputs, CAP_FLUID)
+        let hasSolder = inputFluids && inputFluids.some(i =>
+            fluidValues(i.content).some(v => "tag" in v
                 ? v.tag === "forge:tin"
                 : v.fluid === "gtceu:tin"
             )
@@ -136,7 +188,10 @@ function parseRecipe(recipe) {
     }
 
     // Extract inputs and outputs data
-    let [newInputItems, newOutputItems] = [recipe.inputs?.item, recipe.outputs?.item].map(items =>
+    let [newInputItems, newOutputItems] = [
+        capability(recipe.inputs, CAP_ITEM),
+        capability(recipe.outputs, CAP_ITEM),
+    ].map(items =>
         items && items.map(i => {
             let c = i.content
             switch(c.type) {
@@ -168,12 +223,15 @@ function parseRecipe(recipe) {
         }).filter(stack => stack !== null)
     )
 
-    let [newInputFluids, newOutputFluids] = [recipe.inputs?.fluid, recipe.outputs?.fluid].map(items =>
+    let [newInputFluids, newOutputFluids] = [
+        capability(recipe.inputs, CAP_FLUID),
+        capability(recipe.outputs, CAP_FLUID),
+    ].map(items =>
         items && items.map(i => {
             if (i.chance !== i.maxChance)
                 throw new Error("Chanced fluid recipes are not yet supported")
             let c = i.content
-            let [val] = c.value
+            let [val] = fluidValues(c)
             if (val === undefined)
                 return undefined
             return {
@@ -185,8 +243,9 @@ function parseRecipe(recipe) {
         }).filter(Boolean)
     )
 
-    let eut = recipe.tickInputs?.eu?.length
-        ? recipe.tickInputs.eu[0].content
+    let euIn = capability(recipe.tickInputs, CAP_EU)
+    let eut = euIn?.length
+        ? euIn[0].content
         : null
 
     /** @param {number} by */
@@ -242,14 +301,14 @@ function parseRecipe(recipe) {
                 if(i.chance === 0) {
                     newRecipe.notConsumable(Item.of(i.item, i.amount))
                 } else {
-                    newRecipe.chancedInput(Item.of(i.item, i.amount), 10000 * i.chance / i.maxChance, 0)
+                    newRecipe.chancedInput(Item.of(i.item, i.amount), 10000 * i.chance / i.maxChance)
                 }
             }
         if(newOutputItems) for (let i of newOutputItems) {
             /** @type {Internal.ItemStack} */
             // @ts-expect-error
             let itemStack = i.item ?? `#${i.tag}`
-            newRecipe = newRecipe.chancedOutput(ExtendedOutputItem.of(Item.of(itemStack, i.amount)), 10000 * i.chance / i.maxChance, 0)
+            newRecipe = newRecipe.chancedOutput(ExtendedOutputItem.of(Item.of(itemStack, i.amount)), 10000 * i.chance / i.maxChance)
         }
 
         // Polyfilled spread operator 🙏
@@ -269,21 +328,23 @@ function parseRecipe(recipe) {
                 : cond
             )
 
-            let cleanroomCondition = conditions.find(cond => cond.type === "cleanroom")
+            let cleanroomCondition = conditions.find(cond => cond.type === "gtceu:cleanroom")
             if(cleanroomCondition) {
                 newRecipe = newRecipe.cleanroom(CleanroomType[cleanroomCondition.cleanroom.toUpperCase()])
             }
 
-            let researchCondition = conditions.find(cond => cond.type === "research")
+            let researchCondition = conditions.find(cond => cond.type === "gtceu:research")
             if(researchCondition) {
                 let research = researchCondition.research[0]
                 newRecipe = newRecipe.researchWithoutRecipe(research.researchId, research.dataItem.id)
             }
         }
-        if (recipe.inputChanceLogics?.item)
-            newRecipe = newRecipe.chancedItemInputLogic(ChanceLogic[recipe.inputChanceLogics.item.toUpperCase()])
-        if (recipe.outputChanceLogics?.item)
-            newRecipe = newRecipe.chancedItemOutputLogic(ChanceLogic[recipe.outputChanceLogics.item.toUpperCase()])
+        let inputItemLogic = capability(recipe.inputChanceLogics, CAP_ITEM)
+        if (inputItemLogic)
+            newRecipe = newRecipe.chancedItemInputLogic(ChanceLogic[chanceLogicName(inputItemLogic)])
+        let outputItemLogic = capability(recipe.outputChanceLogics, CAP_ITEM)
+        if (outputItemLogic)
+            newRecipe = newRecipe.chancedItemOutputLogic(ChanceLogic[chanceLogicName(outputItemLogic)])
     }
 
     return { // Kubejs devs pls
@@ -322,9 +383,12 @@ function generateAlternatives(event, javaRecipe) {
     let machineName = recipeId.split(":", 2)[1].split("/", 2)[0]
     let recipeName = recipeId.split(machineName + "/")[1]
 
+    let inputFluids = capability(recipe.inputs, CAP_FLUID)
+    let inputItems = capability(recipe.inputs, CAP_ITEM)
+
     // Soldering alloy tiers
-    if(recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-        i.content.value.some(v => "tag" in v
+    if(inputFluids && inputFluids.some(i =>
+        fluidValues(i.content).some(v => "tag" in v
             ? v.tag === "forge:tin" || RegExp(/soldering_alloy/).test(v.tag)
             : v.fluid === "gtceu:tin" || RegExp(/soldering_alloy/).test(v.fluid)
         )
@@ -358,7 +422,7 @@ function generateAlternatives(event, javaRecipe) {
     }
 
     // Complex SMDs
-    if(recipe.inputs?.item && recipe.inputs.item.some(i =>
+    if(inputItems && inputItems.some(i =>
         i.content.type === "gtceu:sized" &&
         "item" in i.content.ingredient &&
         i.content.ingredient.item.startsWith("gtceu:advanced_smd_") &&
@@ -385,8 +449,8 @@ function generateAlternatives(event, javaRecipe) {
     }
 
     // Oxalic Acid etchant
-    if(recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-        i.content.value.some(v => "tag" in v
+    if(inputFluids && inputFluids.some(i =>
+        fluidValues(i.content).some(v => "tag" in v
             ? v.tag === "forge:iron_iii_chloride"
             : v.fluid === "gtceu:iron_iii_chloride"
         ) && recipeName.match(/circuit_board_iron3$/)
@@ -408,8 +472,8 @@ function generateAlternatives(event, javaRecipe) {
     }
 
     // Hexafluorosilicic circuit boards
-    if(recipe.inputs?.fluid && recipe.inputs.fluid.some(i =>
-        i.content.value.some(v => "tag" in v
+    if(inputFluids && inputFluids.some(i =>
+        fluidValues(i.content).some(v => "tag" in v
             ? v.tag === "forge:sulfuric_acid"
             : v.fluid === "gtceu:sulfuric_acid"
         ) && recipeName.match(/board/)
