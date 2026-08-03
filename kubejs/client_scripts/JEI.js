@@ -28,7 +28,7 @@ JEIEvents.hideItems(event => {
     }
 
     // Hide GT ores to prevent clutter
-    GTMaterialRegistry.getRegisteredMaterials().forEach(id => {
+    GTRegistries.MATERIALS.values().forEach(id => {
         event.hide([
             `gtceu:granite_${id.name}_ore`,
             `gtceu:diorite_${id.name}_ore`,
