@@ -18,14 +18,12 @@ StartupEvents.postInit(event => {
             .slice("#XXHHHXX#", "#########", "#########", "#########", "####F####", "####F####", "#########", "#########")
             .slice("#XXXXXXX#", "###FHF###", "####H####", "####H####", "####H####", "####F####", "#########", "#########")
             .slice("###XXX###", "####F####", "#########", "####H####", "####H####", "####H####", "####H####", "####H####")
-            .where('#', Predicates.any())
-            .where('X',
-                    Predicates.blocks(CASING_PALLADIUM_SUBSTATION.get()).setMinGlobalLimited(30)
-                            .or(WEBHubMachine.getHatchPredicates()))
-            .where('S', Predicates.blocks(SUPERCONDUCTING_COIL.get()))
-            .where('H', Predicates.blocks(HIGH_POWER_CASING.get()))
-            .where('C', Predicates.controller(Predicates.blocks(definition.getBlock())))
-            .where('F', Predicates.frames(GTMaterials.Neutronium))
-            .build();
+            .where("#", Predicates.any())
+            .where("X", Predicates.blocks("gtceu:palladium_substation").setMinGlobalLimited(30).or(WEBHubMachine.getHatchPredicates()))
+            .where("S", Predicates.blocks("gtceu:superconducting_coil"))
+            .where("H", Predicates.blocks("gtceu:high_power_casing"))
+            .where("C", Predicates.controller(Predicates.blocks(definition.getBlock())))
+            .where("F", Predicates.frames(GTMaterials.Europium))
+            .build()
     UtilMachines.WEB_HUB.setPattern("main", pterb_pattern);
 })
