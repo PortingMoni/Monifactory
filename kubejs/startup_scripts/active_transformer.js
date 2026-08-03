@@ -8,9 +8,9 @@ let GTMemoizer = Java.loadClass("com.gregtechceu.gtceu.utils.memoization.GTMemoi
 // Function<MultiblockMachineDefinition, BlockPattern>
 let active_transformer_pattern = (definition) => MultiblockPatternBuilder
                     .start(RelativeDirection.FRONT, RelativeDirection.UP, RelativeDirection.RIGHT)
-    .aisle("XXX", "XXX", "XXX")
-    .aisle("XXX", "XCX", "XXX")
-    .aisle("XXX", "XSX", "XXX")
+    .slice("XXX", "XXX", "XXX")
+    .slice("XXX", "XCX", "XXX")
+    .slice("XXX", "XSX", "XXX")
     .where("S", Predicates.controller(Predicates.blocks(GTMultiMachines.ACTIVE_TRANSFORMER.get())))
     .where("X", Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get()).setMinGlobalLimited(12)
         .or(ActiveTransformerMachine.getHatchPredicates()))
