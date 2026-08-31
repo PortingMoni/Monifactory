@@ -325,7 +325,7 @@ ServerEvents.recipes(event => {
         .itemInputs(
             "2x kubejs:gravitational_amplifier",
             "16x thermal:nuke_tnt",
-            "16x kubejs:quantum_flux",
+            "16x monilabs:quantum_flux",
             "gtceu:uv_field_generator",
             "kubejs:universal_warp_core",
             "kubejs:universal_warp_controller",

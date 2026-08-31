@@ -77,10 +77,7 @@ StartupEvents.registry("item", event => {
         .texture("kubejs:item/microverse/component/extradimensional_navigator")
         .displayName("§dExtradimensional Navigator")
 
-    // Quantum Flux & Universe Creation Data
-    event.create("quantum_flux")
-        .texture("kubejs:item/microverse/quantum_flux")
-        .displayName("§dQuantum Flux")
+    // Universe Creation Data
     event.create("universe_creation_data")
         .displayName("§dUniverse Creation Data")
     event.create("shattered_universe_data")

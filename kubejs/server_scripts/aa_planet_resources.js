@@ -46,7 +46,7 @@ ServerEvents.recipes(event => {
         })
 
         // Recipes to make quantum flux from planets' rock dusts
-        event.shaped(`${fluxCount + 1}x kubejs:quantum_flux`, [
+        event.shaped(`${fluxCount + 1}x monilabs:quantum_flux`, [
             " B ",
             "BAB",
             " B "
@@ -57,7 +57,7 @@ ServerEvents.recipes(event => {
 
         event.recipes.gtceu.mixer(`quantum_flux_from_${planetResources[0]}_dust`)
             .itemInputs(`4x kubejs:${planetResources[0]}_dust`, `#forge:gems/${planetResources[2]}`)
-            .itemOutputs(`${fluxCount + 1}x kubejs:quantum_flux`)
+            .itemOutputs(`${fluxCount + 1}x monilabs:quantum_flux`)
             .duration(100)
             .EUt(GTValues.VA[GTValues.HV])
     })

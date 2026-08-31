@@ -145,11 +145,11 @@ ServerEvents.recipes(event => {
 
         event.recipes.gtceu.extractor("extract_quantum_flux")
             .itemInputs("kubejs:impossible_realm_data")
-            .itemOutputs("kubejs:quantum_flux")
+            .itemOutputs("monilabs:quantum_flux")
             .duration(100)
             .EUt(3000)
 
-        event.shaped("kubejs:quantum_flux", [
+        event.shaped("monilabs:quantum_flux", [
             " B ",
             "BAB",
             " B "

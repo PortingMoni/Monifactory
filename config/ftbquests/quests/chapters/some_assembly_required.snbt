@@ -1611,7 +1611,7 @@
 				""
 				"{moni.quest.1EA5F30C5ACADBA9.description5}"
 			]
-			icon: "kubejs:quantum_flux"
+			icon: "monilabs:quantum_flux"
 			id: "1EA5F30C5ACADBA9"
 			shape: "hexagon"
 			size: 1.5d

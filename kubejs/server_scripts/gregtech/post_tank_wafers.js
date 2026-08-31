@@ -92,7 +92,7 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.LuV])
 
     event.recipes.gtceu.large_chemical_reactor("multidimensional_cpu_wafer")
-        .itemInputs("16x kubejs:unactivated_multidimensional_cpu_wafer", "64x kubejs:quantum_flux", "kubejs:quasi_stable_neutron_star")
+        .itemInputs("16x kubejs:unactivated_multidimensional_cpu_wafer", "64x monilabs:quantum_flux", "kubejs:quasi_stable_neutron_star")
         .inputFluids(Fluid.of("gtceu:xenon", 1000))
         .itemOutputs("16x kubejs:multidimensional_cpu_wafer")
         .cleanroom(CleanroomType.CLEANROOM)
