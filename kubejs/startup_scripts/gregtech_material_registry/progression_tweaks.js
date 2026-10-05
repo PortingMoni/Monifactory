@@ -9,7 +9,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .fluid().ingot()
         .color(0x69595A)
         .flags(GTMaterialFlags.GENERATE_FINE_WIRE, GTMaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
-        .components(GTMaterials.Neptunium.multiply(1), GTMaterials.Palladium.multiply(5), GTMaterials.Aluminium.multiply(2))
+        .components(GTMaterials.Neptunium.asStack(1), GTMaterials.Palladium.asStack(5), GTMaterials.Aluminium.asStack(2))
         .blastTemp(3600, "mid", GTValues.VA[GTValues.HV], 61.5 * 20)
         .cableProperties(GTValues.V[GTValues.LuV], 8, 8, false);
 
@@ -18,7 +18,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .fluid().ingot()
         .color(0x961e30)
         .flags(GTMaterialFlags.GENERATE_FINE_WIRE, GTMaterialFlags.GENERATE_SPRING, GTMaterialFlags.GENERATE_SPRING_SMALL, GTMaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
-        .components(GTMaterials.Lanthanum.multiply(2), GTMaterials.Gold.multiply(3), GTMaterials.Cadmium.multiply(3), GTMaterials.Curium.multiply(1), GTMaterials.Sulfur.multiply(1), GTMaterials.Oxygen.multiply(4))
+        .components(GTMaterials.Lanthanum.asStack(2), GTMaterials.Gold.asStack(3), GTMaterials.Cadmium.asStack(3), GTMaterials.Curium.asStack(1), GTMaterials.Sulfur.asStack(1), GTMaterials.Oxygen.asStack(4))
         .blastTemp(7400, "higher", GTValues.VA[GTValues.LuV], 65 * 20)
         .cableProperties(GTValues.V[GTValues.UHV], 8, 8, false);
 
@@ -36,7 +36,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .liquid(2896)
         .color(0xafb4c7).secondaryColor(0x675f5a)
         .flags(GTMaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
-        .components(GTMaterials.RoseGold.multiply(5), GTMaterials.TinAlloy.multiply(12), GTMaterials.Gallium.multiply(11), GTMaterials.Molybdenum.multiply(7))
+        .components(GTMaterials.RoseGold.asStack(5), GTMaterials.TinAlloy.asStack(12), GTMaterials.Gallium.asStack(11), GTMaterials.Molybdenum.asStack(7))
 
     event.create("living_soldering_alloy")
         .ingot()
@@ -44,10 +44,10 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .color(0xFF0000b)
         .iconSet("dull")
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
-        .components(GTMaterials.get("living_solder_base").multiply(7), GTMaterials.Meat.multiply(3))
+        .components(GTMaterials.get("living_solder_base").asStack(7), GTMaterials.Meat.asStack(3))
 
     event.create("silicon_germanium")
         .dust()
         .color(0x6B7873)
-        .components(GTMaterials.Silicon.multiply(4), GTMaterials.Germanium.multiply(1))
+        .components(GTMaterials.Silicon.asStack(4), GTMaterials.Germanium.asStack(1))
 })

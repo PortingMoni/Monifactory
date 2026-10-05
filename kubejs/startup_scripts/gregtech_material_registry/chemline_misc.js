@@ -138,7 +138,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("glucosamine")
         .dust()
         .color(0xf9d6d1)
-        .components(GTMaterials.Carbon.multiply(6), GTMaterials.Hydrogen.multiply(13), GTMaterials.Nitrogen.multiply(1), GTMaterials.Oxygen.multiply(5))
+        .components(GTMaterials.Carbon.asStack(6), GTMaterials.Hydrogen.asStack(13), GTMaterials.Nitrogen.asStack(1), GTMaterials.Oxygen.asStack(5))
 })
 
 // Ad Astra Ore processing
@@ -147,11 +147,11 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("germanium_disulfide")
         .dust()
         .color(0xf4f9e0)
-        .components(GTMaterials.Germanium.multiply(1), GTMaterials.Sulfur.multiply(2))
+        .components(GTMaterials.Germanium.asStack(1), GTMaterials.Sulfur.asStack(2))
     event.create("manganese_ii_chloride")
         .dust()
         .color(0xfcbdda)
-        .components(GTMaterials.Manganese.multiply(1), GTMaterials.Chlorine.multiply(2))
+        .components(GTMaterials.Manganese.asStack(1), GTMaterials.Chlorine.asStack(2))
 })
 
 // JEAN Chemline
@@ -246,13 +246,13 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .dust().gas()
         .color(0x70486e)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
-        .components(GTMaterials.Amethyst.multiply(7), "2x dark_soularium", GTMaterials.Lapis.multiply(4))
+        .components(GTMaterials.Amethyst.asStack(7), "2x dark_soularium", GTMaterials.Lapis.asStack(4))
 
     event.create("sculk_agar")
         .dust()
         .color(0x0a3538)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION, GTMaterialFlags.STICKY, GTMaterialFlags.PHOSPHORESCENT)
-        .components(GTMaterials.PotassiumCyanide.multiply(4), GTMaterials.Biotite.multiply(7), GTMaterials.GelatinMixture.multiply(9), GTMaterials.get("experience_attuned").multiply(2))
+        .components(GTMaterials.PotassiumCyanide.asStack(4), GTMaterials.Biotite.asStack(7), GTMaterials.GelatinMixture.asStack(9), GTMaterials.get("experience_attuned").asStack(2))
 
     event.create("hadal_sculk")
         .liquid(new GTFluidBuilder().state(GTFluidState.LIQUID).customStill())
@@ -261,7 +261,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .liquid(1936)
         .color(0x52a5c6).secondaryColor(0x48539b)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
-        .components(GTMaterials.BlueAlloy.multiply(4), GTMaterials.Lead.multiply(2), GTMaterials.Lutetium.multiply(1))
+        .components(GTMaterials.BlueAlloy.asStack(4), GTMaterials.Lead.asStack(2), GTMaterials.Lutetium.asStack(1))
 })
 
 // Optical Circuits
