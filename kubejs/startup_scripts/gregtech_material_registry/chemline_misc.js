@@ -3,6 +3,40 @@
  * Material Registry for Processing Lines that register enough materials to get their own registry file.
  */
 
+// I don't know what this is for
+GTCEuStartupEvents.registry("gtceu:material", event => {
+    event.create("butanol")
+        .fluid()
+        .color(0xc7af2e)
+        .components("4x carbon", "10x hydrogen", "1x oxygen")
+        .formula("C4H9OH")
+
+    event.create("phosphorus_trichloride")
+        .fluid()
+        .color(0xe8c474)
+        .components("1x phosphorus", "3x chlorine")
+
+    event.create("phosphoryl_chloride")
+        .fluid()
+        .color(0xe8bb5b)
+        .components("1x phosphorus", "1x oxygen", "3x chlorine")
+
+    event.create("tributyl_phosphate")
+        .fluid()
+        .color(0xe8c474)
+        .components("12x carbon", "27x hydrogen", "4x oxygen", "1x phosphorus")
+        .formula("(C4H9O)3PO")
+
+    event.create("tantalum_pentoxide")
+        .dust()
+        .color(0x72728A).iconSet("rough")
+        .components("2x tantalum", "5x oxygen")
+
+    event.create("purpur")
+        .dust()
+        .color(0xaf7baf).secondaryColor(0x965196).iconSet("rough")
+})
+
 // Wetware Tweaks
 GTCEuStartupEvents.registry("gtceu:material", event => {
 
@@ -138,7 +172,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("glucosamine")
         .dust()
         .color(0xf9d6d1)
-        .components(GTMaterials.Carbon.asStack(6), GTMaterials.Hydrogen.asStack(13), GTMaterials.Nitrogen.asStack(1), GTMaterials.Oxygen.asStack(5))
+        .components("6x carbon", "13x hydrogen", "1x nitrogen", "5x oxygen")
 })
 
 // Ad Astra Ore processing
@@ -147,11 +181,11 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("germanium_disulfide")
         .dust()
         .color(0xf4f9e0)
-        .components(GTMaterials.Germanium.asStack(1), GTMaterials.Sulfur.asStack(2))
+        .components("1x germanium", "2x sulfur")
     event.create("manganese_ii_chloride")
         .dust()
         .color(0xfcbdda)
-        .components(GTMaterials.Manganese.asStack(1), GTMaterials.Chlorine.asStack(2))
+        .components("1x manganese", "2x chlorine")
 })
 
 // JEAN Chemline
@@ -246,13 +280,13 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .dust().gas()
         .color(0x70486e)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
-        .components(GTMaterials.Amethyst.asStack(7), "2x dark_soularium", GTMaterials.Lapis.asStack(4))
+        .components("7x amethyst", "2x dark_soularium", "4x lapis")
 
     event.create("sculk_agar")
         .dust()
         .color(0x0a3538)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION, GTMaterialFlags.STICKY, GTMaterialFlags.PHOSPHORESCENT)
-        .components(GTMaterials.PotassiumCyanide.asStack(4), GTMaterials.Biotite.asStack(7), GTMaterials.GelatinMixture.asStack(9), GTMaterials.get("experience_attuned").asStack(2))
+        .components("4x potassium_cyanide", "7x biotite", "9x gelatin_mixture", "2x experience_attuned")
 
     event.create("hadal_sculk")
         .liquid(new GTFluidBuilder().state(GTFluidState.LIQUID).customStill())
@@ -261,7 +295,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .liquid(1936)
         .color(0x52a5c6).secondaryColor(0x48539b)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
-        .components(GTMaterials.BlueAlloy.asStack(4), GTMaterials.Lead.asStack(2), GTMaterials.Lutetium.asStack(1))
+        .components("4x blue_alloy", "2x lead", "1x lutetium")
 })
 
 // Optical Circuits
@@ -309,38 +343,4 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .color(0xCFC870)
         .components("1x calcium", "2x carbon")
 
-})
-
-// I don't know what this is for
-GTCEuStartupEvents.registry("gtceu:material", event => {
-    event.create("butanol")
-        .fluid()
-        .color(0xc7af2e)
-        .components("4x carbon", "10x hydrogen", "1x oxygen")
-        .formula("C4H9OH")
-
-    event.create("phosphorus_trichloride")
-        .fluid()
-        .color(0xe8c474)
-        .components("1x phosphorus", "3x chlorine")
-
-    event.create("phosphoryl_chloride")
-        .fluid()
-        .color(0xe8bb5b)
-        .components("1x phosphorus", "1x oxygen", "3x chlorine")
-
-    event.create("tributyl_phosphate")
-        .fluid()
-        .color(0xe8c474)
-        .components("12x carbon", "27x hydrogen", "4x oxygen", "1x phosphorus")
-        .formula("(C4H9O)3PO")
-
-    event.create("tantalum_pentoxide")
-        .dust()
-        .color(0x72728A).iconSet("rough")
-        .components("2x tantalum", "5x oxygen")
-
-    event.create("purpur")
-        .dust()
-        .color(0xaf7baf).secondaryColor(0x965196).iconSet("rough")
 })

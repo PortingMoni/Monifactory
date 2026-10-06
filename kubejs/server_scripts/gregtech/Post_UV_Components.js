@@ -20,10 +20,9 @@ ServerEvents.recipes(event => {
     $ItemMaterialData.clearMaterialInfo(GTMachines.HULL[GTValues.UHV].item)
     $ItemMaterialData.clearMaterialInfo(Item.of("gtceu:uhv_quantum_chest"))
     $ItemMaterialData.clearMaterialInfo(Item.of("gtceu:uhv_quantum_tank"))
-    $ItemMaterialData.registerMaterialInfo(GTBlocks.MACHINE_CASING_UHV.asItem(), new $ItemMaterialInfo(
-        new $MaterialStack(GTMaterials.get("manyullyn"), GTValues.M * 8),
-        $MaterialStack.EMPTY
-    ))
+    $ItemMaterialData.registerMaterialInfo(GTBlocks.MACHINE_CASING_UHV.asItem(), $ItemMaterialInfo["(java.util.List)"]([
+        new $MaterialStack(GTMaterials.get("manyullyn"), GTValues.M * 8)
+    ]))
     $ItemMaterialData.registerMaterialInfo(GTBlocks.HERMETIC_CASING_UHV.asItem(), new $ItemMaterialInfo(
         new $MaterialStack(GTMaterials.get("manyullyn"), GTValues.M * 8),
         new $MaterialStack(GTMaterials.Duranium, GTValues.M * 6)

@@ -127,15 +127,15 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
 
 GTCEuStartupEvents.materialModification(event => {
     // Change materials' components
-    GTMaterials.EchoShard.setComponents(GTMaterials.Quartzite.asStack(3), GTMaterials.Sculk.asStack(2))
+    GTMaterials.EchoShard.setComponents("3x quartzite", "2x sculk")
 
-    GTMaterials.Glowstone.setComponents(GTMaterials.TricalciumPhosphate.asStack(1), GTMaterials.Gold.asStack(1), GTMaterials.Barite.asStack(1))
+    GTMaterials.Glowstone.setComponents("1x tricalcium_phosphate", "1x gold", "1x barite")
     GTMaterials.Glowstone.setFormula("AuCa3(PO4)2BaSO4", true)
 
-    GTMaterials.RhodiumPlatedPalladium.setComponents(GTMaterials.Palladium.asStack(3), GTMaterials.Rhodium.asStack(1), "2x lumium")
+    GTMaterials.RhodiumPlatedPalladium.setComponents("3x palladium", "1x rhodium", "2x lumium")
     GTMaterials.RhodiumPlatedPalladium.setFormula("Pd3Rh(SnFe)4(CuAg4)2", true)
 
-    GTMaterials.Sugar.setComponents(GTMaterials.Carbon.asStack(12), GTMaterials.Water.asStack(11))
+    GTMaterials.Sugar.setComponents("12x carbon", "11x water")
     GTMaterials.Sugar.setFormula("C12H22O11", true)
 
     // We keep Ingots in the material definition so we can replace it in the Ore Processing Diagram with vanilla Netherite Scrap, then remove it here.

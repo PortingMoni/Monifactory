@@ -6,7 +6,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("hexafluorosilicic_acid")
         .liquid(new GTFluidBuilder().attribute($FluidAttributes.ACID))
         .color(0xd00010)
-        .components(GTMaterials.Hydrogen.asStack(2), GTMaterials.Silicon.asStack(1), GTMaterials.Fluorine.asStack(6))
+        .components("2x hydrogen", "1x silicon", "6x fluorine")
 
     event.create("aluminosilicate_residue")
         .dust()
@@ -16,7 +16,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("dirty_hexafluorosilicic_solution")
         .liquid(new GTFluidBuilder().attribute($FluidAttributes.ACID))
         .color(0xe00030)
-        .components("hexafluorosilicic_acid", GTMaterials.Water.asStack(2), "aluminosilicate_residue")
+        .components("hexafluorosilicic_acid", "2x water", "aluminosilicate_residue")
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
 
     event.create("dusty_helium")
@@ -28,13 +28,13 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("eltz-enriched_helium")
         .gas()
         .color(0x10c050)
-        .components(GTMaterials.Helium.asStack(1), GTMaterials.get("monilabs:eltz").asStack(1), "aluminosilicate_residue")
+        .components("1x helium", "1x monilabs:eltz", "aluminosilicate_residue")
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
 
     event.create("eltz-depleted_helium")
         .gas()
         .color(0x006010)
-        .components(GTMaterials.Helium.asStack(3), GTMaterials.MetalMixture.asStack(1))
+        .components("3x helium", "1x metal_mixture")
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
 
     event.create("eltic_sludge")
@@ -53,17 +53,17 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     event.create("lithium_oxide")
         .dust()
         .color(0xdfdfdf)
-        .components(GTMaterials.Lithium.asStack(2), GTMaterials.Oxygen.asStack(1))
+        .components("2x lithium", "1x oxygen")
 
     event.create("manganese_oxide")
         .dust()
         .color(0x425142)
-        .components(GTMaterials.Manganese.asStack(1), GTMaterials.Oxygen.asStack(1))
+        .components("1x manganese", "1x oxygen")
 
     event.create("ferrous_oxide")
         .dust()
         .color(0x231e1e)
-        .components(GTMaterials.Iron.asStack(1), GTMaterials.Oxygen.asStack(1))
+        .components("1x iron", "1x oxygen")
 
     // Also used in Snowchestiteline (HM only)
     event.create("caesium_hydroxide")
