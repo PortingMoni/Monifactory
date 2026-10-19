@@ -36,17 +36,38 @@ if (doHarderProcessing) {
             .outputFluids("gtceu:hydrogen 1000")
             .duration(10).EUt(GTValues.VA[GTValues.LV])
 
-        event.recipes.gtceu.chemical_reactor("methyl_formate")
+        event.recipes.gtceu.chemical_reactor("methyl_formate_from_sodium_methoxide")
             .itemInputs("gtceu:tiny_sodium_methoxide_dust")
             .inputFluids("gtceu:methanol 1000", "gtceu:carbon_monoxide 1000")
             .outputFluids("gtceu:methyl_formate 1000")
             .duration(16).EUt(GTValues.VA[GTValues.LV])
             .circuit(3)
 
+        event.recipes.gtceu.chemical_reactor("methyl_formate_from_sodium_hydroxide")
+            .itemInputs("gtceu:small_sodium_hydroxide_dust")
+            .inputFluids("gtceu:methanol 1000", "gtceu:carbon_monoxide 1000")
+            .outputFluids("gtceu:methyl_formate 1000")
+            .duration(16).EUt(GTValues.VA[GTValues.LV])
+            .circuit(4)
+
+        event.recipes.gtceu.chemical_reactor("methyl_formate_from_sodium_carbonate")
+            .itemInputs("gtceu:small_soda_ash_dust")
+            .inputFluids("gtceu:methanol 1000", "gtceu:carbon_monoxide 1000")
+            .outputFluids("gtceu:methyl_formate 1000")
+            .duration(16).EUt(GTValues.VA[GTValues.LV])
+            .circuit(5)
+
         event.recipes.gtceu.chemical_reactor("formic_acid")
             .inputFluids("gtceu:methyl_formate 1000", "minecraft:water 1000")
             .outputFluids("gtceu:formic_acid 1000", "gtceu:methanol 1000")
             .duration(16).EUt(GTValues.VA[GTValues.LV])
+
+        // alt route to Formamide
+        event.recipes.gtceu.chemical_reactor("formamide")
+            .inputFluids("gtceu:methyl_formate 1000", "gtceu:ammonia 1000")
+            .outputFluids("gtceu:formamide 1000", "gtceu:methanol 1000")
+            .duration(2 * GTValues.SECONDS)
+            .EUt(GTValues.VA[GTValues.MV])
 
         // Potassium Pyrosulfate
         event.recipes.gtceu.chemical_bath("rock_salt_to_potassium_bisulfate")
@@ -113,13 +134,9 @@ if (doHarderProcessing) {
             .outputFluids("gtceu:hydrochloric_acid 3000", "gtceu:ammonia 2000")
             .duration(140).EUt(GTValues.VA[GTValues.EV])
 
-        let steam = new JSONObject()
-        steam.add("amount", 3840)
-        steam.add("value", { tag: "forge:steam" })
-
         event.recipes.gtceu.autoclave("platinum_raw_dust_to_platinum")
             .itemInputs("3x gtceu:platinum_raw_dust", "gtceu:calcium_dust")
-            .inputFluids(FluidIngredientJS.of(steam))
+            .inputFluids("#forge:steam 3840")
             .itemOutputs("gtceu:platinum_dust", "3x gtceu:calcium_chloride_dust")
             .outputFluids("minecraft:water 24")
             .duration(30).EUt(GTValues.VA[GTValues.LV])

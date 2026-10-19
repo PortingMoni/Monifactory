@@ -29,11 +29,12 @@ ServerEvents.recipes(event => {
         .EUt(GTValues.VA[GTValues.IV])
 
     // Crystal Matrix Line
-    event.recipes.gtceu.forge_hammer("crystal_seeds_from_exquisite_diamond")
+    event.recipes.gtceu.chemical_bath("crystal_seeds_from_exquisite_diamond")
         .itemInputs("gtceu:exquisite_diamond_gem")
-        .chancedOutput("kubejs:crystal_seeds", 500)
+        .inputFluids("gtceu:darmstadtium 36")
+        .chancedOutput("kubejs:crystal_seeds", 50)
         .duration(200)
-        .EUt(GTValues.VA[GTValues.EV])
+        .EUt(GTValues.VA[GTValues.IV])
 
     const wafers = [
         ["gtceu:", "naquadah_wafer"],
@@ -64,7 +65,7 @@ ServerEvents.recipes(event => {
             .chancedOutput("kubejs:grown_nanotube_substrate", 7000)
             .chancedOutput("kubejs:failed_nanotube_substrate", 3000)
             .chancedItemOutputLogic(ChanceLogic.XOR)
-            .duration(2880 * fluid_type.amount)
+            .duration(720 * fluid_type.amount)
             .EUt(GTValues.VA[GTValues.IV])
             .cleanroom(CleanroomType.CLEANROOM)
     })
@@ -81,7 +82,7 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.cutter("nanotube_separation")
         .itemInputs("kubejs:grown_nanotube_substrate")
         .itemOutputs("4x kubejs:carbon_nanotubes")
-        .chancedOutput("kubejs:nanotube_substrate", 9500)
+        .chancedOutput("kubejs:nanotube_substrate", 6000)
         .duration(240)
         .EUt(GTValues.VA[GTValues.EV])
         .cleanroom(CleanroomType.CLEANROOM)
@@ -125,17 +126,11 @@ ServerEvents.recipes(event => {
         .blastFurnaceTemp(3823)
         .circuit(2)
 
-    event.recipes.gtceu.macerator("matrix_macerating")
-        .itemInputs("4x kubejs:adhered_matrix_mesh")
-        .itemOutputs("monilabs:crystal_matrix_dust")
-        .duration(0.6 * 20)
-        .EUt(GTValues.VA[GTValues.LV])
-
-    event.recipes.gtceu.forge_hammer("matrix_mesh_into_foil")
+    event.recipes.gtceu.forge_hammer("matrix_smashing")
         .itemInputs("kubejs:adhered_matrix_mesh")
-        .itemOutputs("monilabs:crystal_matrix_foil")
-        .duration(0.6 * 20)
-        .EUt(GTValues.VA[GTValues.MV])
+        .itemOutputs("monilabs:small_crystal_matrix_dust")
+        .duration(0.3 * GTValues.SECONDS)
+        .EUt(0.25 * GTValues.V[GTValues.ULV])
 
     // Old Electrode stuff which is kinda cool I think
     event.recipes.gtceu.forming_press("graphite_electrode")

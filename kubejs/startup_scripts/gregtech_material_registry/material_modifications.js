@@ -55,6 +55,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     GTMaterials.Tritanium.addFlags(GTMaterialFlags.GENERATE_SPRING)
     GTMaterials.Iridium.addFlags(GTMaterialFlags.GENERATE_DENSE)
     GTMaterials.Platinum.addFlags(GTMaterialFlags.GENERATE_FRAME)
+    GTMaterials.Naquadah.addFlags(GTMaterialFlags.GENERATE_FRAME)
 
     // Gears for Thermal Expansion
     GTMaterials.Nickel.addFlags(GTMaterialFlags.GENERATE_GEAR)
@@ -107,6 +108,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     // Give Zincite an ore form
     let zincite_ore_prop = new $OreProperty(2, 2);
     zincite_ore_prop.setOreByProducts(GTMaterials.Iron, GTMaterials.Manganese)
+    zincite_ore_prop.setDirectSmeltResult(GTMaterials.Zinc)
     GTMaterials.Zincite.setProperty($PropertyKey.ORE, zincite_ore_prop)
 
     // Give Borax an ore form
@@ -123,6 +125,11 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
     if (doHarderProcessing) {
         GTMaterials.RhodiumSulfate.setProperty($PropertyKey.DUST, new $DustProperty());
     }
+
+    // Withers crashes out
+    GTMaterials.Lapotron.setMaterialARGB(0x7395E7)
+    GTMaterials.Lapotron.setMaterialSecondaryARGB(0x4750F6)
+    GTMaterials.Lapotron.setMaterialIconSet(GTMaterialIconSet.getByName("dilithium"))
 })
 
 GTCEuStartupEvents.materialModification(event => {
@@ -166,4 +173,8 @@ GTCEuStartupEvents.materialModification(event => {
 
     // Change Fluix block to only have 4 gems instead of 9
     TagPrefix.block.modifyMaterialAmount(GTMaterials.get("fluix"), 4)
+
+    // Withers crashes out
+    TagPrefix.block.removeIgnored(GTMaterials.Lapotron)
+    TagPrefix.block.modifyMaterialAmount(GTMaterials.Lapotron, 15)
 })

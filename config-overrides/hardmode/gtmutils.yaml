@@ -16,7 +16,7 @@ features:
     omnibreakerEnergyCapacity: 40960000
 
     # Whether the Wireless Active Transformer is enabled.
-    pterbEnabled: true
+    webEnabled: true
 
     # Whether placed Parallel Hatches should be automatically set to their maximum parallels.
     parallelHatchAutoConfigure: true
@@ -28,7 +28,7 @@ features:
     # Multiplier over IO amount for additional coolant drain.
     # Multiplies over the logarithm of Voltage * Amperage.
     # (Setting both this and the base drain amount to 0 disables the coolant mechanic.)
-    webCoolantIOMultiplier: 10.0
+    webCoolantIOMultiplier: 10
 
     # Whether the coins/credits are enabled.
     coinsEnabled: false
