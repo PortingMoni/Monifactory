@@ -225,7 +225,7 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
 
 // Wither Gas
 GTCEuStartupEvents.registry("gtceu:material", event => {
-    event.create("tetrapropylene")
+    event.create("dodecene")
         .fluid()
         .color(0xbfa53f)
 
@@ -344,3 +344,4 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .components("1x calcium", "2x carbon")
 
 })
+
