@@ -345,14 +345,3 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
 
 })
 
-// I don't know what this is for
-GTCEuStartupEvents.registry("gtceu:material", event => {
-    event.create("tantalum_pentoxide")
-        .dust()
-        .color(0x72728A).iconSet("rough")
-        .components("2x tantalum", "5x oxygen")
-
-    event.create("purpur")
-        .dust()
-        .color(0xaf7baf).secondaryColor(0x965196).iconSet("rough")
-})

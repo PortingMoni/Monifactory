@@ -64,7 +64,6 @@ GTCEuStartupEvents.registry("gtceu:material", event => {
         .color(0xa0734e).secondaryColor(0x405275)
         .components("1x iron", "1x manganese", "2x tungsten", "8x oxygen")
         .formula("(Fe,Mn)(WO3)O")
-        .addOreByproducts(GTMaterials.Iron, GTMaterials.Manganese, GTMaterials.get("fluorite"))
         .washedIn(GTMaterials.Mercury)
         .separatedInto(GTMaterials.Iron)
         .flags(GTMaterialFlags.DISABLE_DECOMPOSITION)
