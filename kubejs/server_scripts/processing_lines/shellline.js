@@ -19,7 +19,7 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.electromagnetic_separator("separate_niobium_palladium_grit")
         .itemInputs("kubejs:niobium_palladium_grit")
         .itemOutputs("gtceu:palladium_raw_dust")
-        .chancedOutput(doHarderProcessing ? "gtceu:niobium_pentoxide_dust" : "gtceu:niobium_dust", doHarderProcessing ? 7000 : 2000, 0)
+        .chancedOutput(doHarderProcessing ? "gtceu:niobium_pentoxide_dust" : "gtceu:niobium_dust", doHarderProcessing ? 7000 : 2000)
         .chancedOutput("gtceu:niobium_nugget", 3500)
         .duration(10 * GTValues.SECONDS)
         .EUt(GTValues.VA[GTValues.MV])

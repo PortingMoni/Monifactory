@@ -70,8 +70,8 @@ ServerEvents.recipes(event => {
 
     repairing("3half")
         .EUt(GTValues.VHA[GTValues.EV])
-        .chancedInput("2x gtceu:dense_microversium_plate", 5000, 0)
-        .chancedInput("2x gtceu:double_microversium_plate", 5000, 0)
+        .chancedInput("2x gtceu:dense_microversium_plate", 5000)
+        .chancedInput("2x gtceu:double_microversium_plate", 5000)
         .chancedItemInputLogic(ChanceLogic.XOR)
 
     repairing("4half")

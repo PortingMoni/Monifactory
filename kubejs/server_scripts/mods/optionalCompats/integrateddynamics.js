@@ -11,7 +11,7 @@ if (Platform.isLoaded("integrateddynamics") && Platform.isLoaded("integratedtunn
         // Add Menril processing
         event.recipes.gtceu.extractor("menril_resin_from_logs")
             .itemInputs("integrateddynamics:menril_log")
-            .chancedOutput("integrateddynamics:crystalized_menril_chunk", 1250, 0)
+            .chancedOutput("integrateddynamics:crystalized_menril_chunk", 1250)
             .outputFluids("integrateddynamics:menril_resin 288")
             .duration(20)
             .EUt(GTValues.VH[GTValues.LV])

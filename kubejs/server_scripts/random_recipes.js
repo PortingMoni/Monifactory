@@ -861,8 +861,8 @@ ServerEvents.recipes(event => {
     // Separate Chromium out of Chromite
     event.recipes.gtceu.electromagnetic_separator("chromium_from_chromite")
         .itemInputs("gtceu:chromite_dust")
-        .chancedOutput("gtceu:chromium_dust", 6000, 0)
-        .chancedOutput("gtceu:ferrous_oxide_dust", 3000, 0)
+        .chancedOutput("gtceu:chromium_dust", 6000)
+        .chancedOutput("gtceu:ferrous_oxide_dust", 3000)
         .duration(15 * GTValues.SECONDS)
         .EUt(GTValues.VA[GTValues.MV])
 

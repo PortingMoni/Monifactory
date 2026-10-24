@@ -19,11 +19,9 @@ ServerEvents.recipes(event => {
         // See if this recipe is actually a plasma recipe (Recipe ID is misleading, sometimes includes keyword "plasma" when recipe does not involve plasma)
         fluidOutputs.forEach(fluidOutput => {
             let content = fluidOutput.getAsJsonObject("content")
-            let value = content.getAsJsonArray("value")
-            value.forEach(fluidValue => {
-                let fluidType = fluidValue.getAsJsonPrimitive("fluid").asString
-                if(fluidType.includes("plasma")) isPlasmaRecipe = true
-            })
+            let value = content.getAsJsonObject("value")
+            let fluidType = value.getAsJsonPrimitive("fluid").asString
+            if(fluidType.includes("plasma")) isPlasmaRecipe = true
         })
 
         // Modify fluid I/O if it's indeed a plasma recipe
