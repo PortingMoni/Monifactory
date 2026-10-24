@@ -9,6 +9,8 @@ StartupEvents.registry("item", event => {
         "2half",
         "2half_damaged",
         "3",
+        "3half",
+        "3half_damaged",
         "4",
         "4half",
         "4half_damaged",
@@ -27,6 +29,7 @@ StartupEvents.registry("item", event => {
 
     const stabilized_miners = [
         "2half",
+        "3half",
         "4half",
         "6",
         "7",
@@ -77,7 +80,7 @@ StartupEvents.registry("item", event => {
         .texture("kubejs:item/microverse/component/extradimensional_navigator")
         .displayName("§dExtradimensional Navigator")
 
-    // Universe Creation Data
+    // Quantum Flux & Universe Creation Data
     event.create("universe_creation_data")
         .displayName("§dUniverse Creation Data")
     event.create("shattered_universe_data")
@@ -462,10 +465,8 @@ StartupEvents.registry("item", event => {
         .texture("kubejs:item/mod/thermal/clathrate/resonant_clathrate")
 
     // Ender Spore
-    if (!doHNN) {
-        event.create("ender_spore")
-            .texture("kubejs:item/ender_spore")
-    }
+    event.create("ender_spore")
+        .texture("kubejs:item/ender_spore")
 
     // Thermal Custom Augments Classes
     const $AugmentItem = Java.loadClass("cofh.thermal.lib.common.item.AugmentItem");
@@ -751,35 +752,6 @@ StartupEvents.registry("item", event => {
     Circuit("extradimensional", "processor_assembly", "uhv")
     Circuit("extradimensional", "processor_computer", "uev")
     Mainframe("extradimensional", "max")
-
-    // Smores
-    const smoreHunger = [
-        4, 10, 22, 46, 94, 190, 382
-    ]
-    const smoreSaturation = [
-        12, 76, 379, 1675, 7032, 28805, 116587
-    ]
-    let effDuration = 300;
-
-    for (let i = 0; i <= 6; i++) {
-        event.create(`smore_${2 ** i}`).food(food => {
-            food.hunger(smoreHunger[i] * 2);
-            food.saturation(smoreSaturation[i] / (1 + 4 * smoreHunger[i]) * 2);
-            food.effect("absorption", effDuration, 1, 1);
-            food.effect("speed", effDuration, 1, 1);
-            food.effect("haste", effDuration, 1, 1);
-
-            if (i > 2) {
-                food.effect("saturation", effDuration, 1, 1);
-                food.effect("health_boost", effDuration, 1, 1);
-            }
-
-            food.alwaysEdible();
-
-        }).texture(`kubejs:item/smore/smore_${2 ** i}`)
-
-        effDuration *= 2;
-    }
 
     // Universal Circuits
     const tiers = ["ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv", "uev"]

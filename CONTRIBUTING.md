@@ -7,6 +7,7 @@
   - [Basics of Git](#basics-of-git)
   - [Git GUIs/CUIs](#git-guiscuis)
   - [Git versus GitHub](#git-versus-github)
+  - [Pull Request Checks](#pull-request-checks)
 - [What Contributions Are We Seeking?](#what-contributions-are-we-seeking)
 - [Getting Started](#getting-started)
   - [Setting up an instance repository for use in dev](#setting-up-an-instance-repository-for-use-in-dev)
@@ -50,10 +51,17 @@ Git sometimes is a hard program to master, there are a few ways to use git
 - VSCode built-in Git utility(Requires VSCode, obviously) - Similar to Git Desktop but built into VSCode and is way less invasive, not *as* good as Github Desktop for beginners but can be nice if you don't want to switch programs all the time
 - [LazyGit](https://github.com/jesseduffield/lazygit/tree/master?tab=readme-ov-file#winget-windows-10-1709-or-later)
  - A Command line UI, you use the arrow keys and the "Tab" key to navigate through it's menu's, the middle ground between Github Desktop and just using manual git commands, you can use winget on windows, brew on macOS, your linux distro's package manager, or just compile it from source.
+
 ## Git versus GitHub ##
 
 - Git - Version control software used to manage files in a repository(A directory containing code, in this case, this should be your minecraft folder)
 - GitHub - Used to host said repositories and allow for easy collaboration worldwide.
+
+## Pull Request Checks ##
+
+- Each pull request has some checks run against it to ensure the quality of contributions made to the project.
+- One of these checks is a lint check. It ensures that the source code style and formatting meet our standards.
+- Three other checks are gametests. They launch the game and ensure no errors occur when loading into a world. Due to the way they are structured, they will automatically fail if a pull request comes from a third-party repository and modpack manifest is changed. As such, they are not required to pass for pull requests that modify for the modpack manifest, but we request that those PRs do not modify any other files to mitigate the risks of this exception.
 
 ## What Contributions Are We Seeking? ##
 
@@ -216,7 +224,7 @@ KubeJS offers a feature to automatically load resource packs & datapacks put int
 4. Do not leave any unused files or assets in these folders! One example is how there used to be an entire suite of Draconic Evolution-themed casings before the theming was switched to the Deep Dark instead. Those unused assets were left in the folder for _months_ after the switch. Debug assets such as those in `kubejs\assets\kubejs\textures\block\debug` are exempt.
 
 ## Optional Compats ##
-Optional Compatiblities for mods should be balanced so that they fit naturally in the modpack's progression without overshadowing existing options. For example, an optional compatability should not have wireless be unlocked before it's possible in the base modpack. Optional Compatibilies serve to extend and add additional options, not replace.
+Optional Compatibilities for mods should be balanced so that they fit naturally in the modpack's progression without overshadowing existing options. For example, an optional compatibility should not have wireless be unlocked before it's possible in the base modpack. Optional Compatibilities serve to extend and add additional options, not replace.
 
 ## Updating Mods ##
 
@@ -226,8 +234,6 @@ It's easy to forget, but mod updates can break as many things as they fix - don'
 PERFORM THOROUGH CHECKS BEFORE UPDATING:
 | Mod | Problems that result from updating |
 | ------------- | ------------- |
-| HammerLib | Causes datapack errors when loading into existing worlds |
-| Solar Flux Reborn | Depends on an updated HammerLib |
 
 # KubeJS Systems #
 For assisting in pack development, several systems have been implemented in KubeJS to perform repetitive tasks en masse more easily.

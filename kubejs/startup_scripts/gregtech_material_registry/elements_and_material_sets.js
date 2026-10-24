@@ -8,11 +8,6 @@
 
 GTCEuStartupEvents.registry("gtceu:element", event => {
 
-    // Primal Mana
-
-    event.create("mana")
-        .symbol("ᛗ")
-
     // Sculk
 
     event.create("cryolobus")
@@ -72,25 +67,6 @@ GTCEuStartupEvents.registry("gtceu:element", event => {
         .protons(119)
         .neutrons(229)
         .symbol("Dl")
-
-    // NCN Isotope Fluids
-    event.create("uranium_233")
-        .protons(92)
-        .neutrons(141)
-        .symbol("U-233")
-        .isIsotope(true)
-
-    event.create("plutonium_238")
-        .protons(94)
-        .neutrons(144)
-        .symbol("Pu-238")
-        .isIsotope(true)
-
-    event.create("plutonium_242")
-        .protons(94)
-        .neutrons(148)
-        .symbol("Pu-242")
-        .isIsotope(true)
 })
 
 
@@ -100,7 +76,7 @@ GTCEuStartupEvents.registry("gtceu:material_icon_set", event => {
 
     // Generic
     event.create("magic").parent(GTMaterialIconSet.METALLIC)
-    event.create("dilithium").parent(GTMaterialIconSet.DULL)
+    event.create("dilithium").parent(GTMaterialIconSet.SHINY)
 
     // Prismatic Crucible
     event.create("infinity").parent(GTMaterialIconSet.SHINY)
@@ -108,7 +84,6 @@ GTCEuStartupEvents.registry("gtceu:material_icon_set", event => {
     event.create("monium").parent(GTMaterialIconSet.SHINY)
 
     // Miscellaneous
-    event.create("mana").parent(GTMaterialIconSet.SHINY)
     event.create("necrosiderite").parent(GTMaterialIconSet.METALLIC)
     event.create("omnium").parent(GTMaterialIconSet.SHINY)
     event.create("hyperdegenerate_darconite").parent(GTMaterialIconSet.SHINY)

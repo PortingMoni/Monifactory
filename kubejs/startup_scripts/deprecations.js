@@ -6,7 +6,7 @@
 /* *** TO BE REMOVED FROM THIS FILE IN MONIFACTORY 0.14 *** */
 
 // Primal Mana
-deprecateFluid("kubejs:molten_primal_mana", "gtceu:mana", "Primal Mana")
+deprecateFluid("gtceu:mana", "monilabs:mana", "Primal Mana")
 
 // Dilithium
 deprecateItem("kubejs:dilithium_crystal", "gtceu:dilithium_gem", "Dilithium")
@@ -59,6 +59,7 @@ deprecateBlock("kubejs:bioalloy_fusion_casing", "monilabs:bioalloy_fusion_casing
 deprecateItem("gtceu:eltz_ingot", "monilabs:eltz_ingot", "Eltz Ingot")
 deprecateItem("gtceu:crystal_matrix_ingot", "monilabs:crystal_matrix_ingot", "Crystal Matrix Ingot")
 deprecateItem("gtceu:sculk_bioalloy_ingot", "monilabs:sculk_bioalloy_ingot", "Sculk Bioalloy Ingot")
+deprecateItem("kubejs:quantum_flux", "monilabs:quantum_flux", "Quantum Flux")
 
 deprecateBlock("gtceu:basic_microverse_projector", "monilabs:basic_microverse_projector", "Basic Microverse Projector")
 deprecateBlock("gtceu:advanced_microverse_projector", "monilabs:advanced_microverse_projector", "Advanced Microverse Projector")
